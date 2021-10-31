@@ -1,0 +1,15 @@
+body {
+    background-color: #f5f8fa;
+}
+
+.example-box {
+    width: 60%;
+}
+
+.examples-props {
+    background-color: #ebf1f5;
+}
+
+.examples-props>h3 {
+    font-size: 1.25rem;
+}

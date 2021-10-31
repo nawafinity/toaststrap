@@ -1,0 +1,8 @@
+/*!
+ * Bootstrap5 Toast v1.0.0
+ * 
+ * Copyright 2021 Nawafinity.
+ *
+*/.bootstrap5-toast-container{display:none;transition:all .4s cubic-bezier(0.215, 0.61, 0.355, 1)}.bootstrap5-toast-container:is(.show){display:block}.bootstrap5-toast-container:is(.show) .toast{display:block}.bootstrap5-toast-top{top:-155px}.bootstrap5-toast-bottom{bottom:-155px}.bootstrap5-toast-start{left:5px}[dir=rtl] .bootstrap5-toast-start{left:unset;right:5px}.bootstrap5-toast-end{right:5px}.bootstrap5-toast-end [dir=rtl]{right:unset;left:5px}@media only screen and (max-width: 360px){.bootstrap5-toast-start,.bootstrap5-toast-end{margin-left:0;margin-right:0;left:0;right:0}.bootstrap5-toast-start .toast,.bootstrap5-toast-end .toast{margin:auto}}
+
+/*# sourceMappingURL=bootstrap5-toast.css.map*/
