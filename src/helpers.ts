@@ -1,5 +1,10 @@
-const hasClass = (element: Element, className: string) => {
-  return element.classList.contains(className);
-};
+import dayjs from "dayjs"
 
-export { hasClass };
+const hasClass = (element: Element, className: string) => {
+  return element.classList.contains(className)
+}
+
+const getHumanTime = (datetime: string) => {
+  return dayjs(datetime).fromNow()
+}
+export { hasClass, getHumanTime }

@@ -19,27 +19,29 @@ import { hasClass } from "./helpers";
 dayjs.extend(relativeTime);
 var Bootstrap5Toast = /** @class */ (function () {
     function Bootstrap5Toast(options) {
-        this.options = __assign({ title: "", text: "", type: "info", hideHeader: false, position: POSITION.TOP_END, parent: "body", allowSound: false }, options);
+        this.options = __assign({ title: "", text: "", type: "info", hideHeader: false, position: POSITION.TOP_END, parent: "body", allowSound: false, duration: 3000 }, options);
         if (Object.keys(POSITION).includes(this.options.position)) {
             this.position = prefrences.positions[this.options.position];
         }
         else {
             this.position = prefrences.positions.TOP_END;
         }
+        this.id = v4();
+        this.createdAt = this.getHumanTime();
+        this.item = document.createElement("div");
+        this.spaceBetween = 5;
+        this.sound = new Audio();
+        this.group = this.options.position;
+        this.customParent = false;
         if (this.options.allowSound) {
             this.makeSound();
         }
-        if (this.options.datatime) {
-            this.createdAt = this.options.datatime;
+        if (this.options.datetime) {
+            this.createdAt = this.options.datetime;
         }
         else {
             this.createdAt = dayjs().toString();
         }
-        this.id = v4();
-        this.createdAt = this.getHumanTime();
-        this.item = document.createElement("div");
-        this.sound = document.createElement("audio");
-        this.spaceBetween = 5;
     }
     Bootstrap5Toast.prototype.show = function () {
         var root = this.rootElement;
@@ -100,7 +102,7 @@ var Bootstrap5Toast = /** @class */ (function () {
          */
         get: function () {
             var containerElement = document.createElement("div");
-            containerElement.className = "position-fixed " + this.position + " " + gclass("container");
+            containerElement.className = (this.customParent ? 'position-absolute' : 'position-fixed') + " " + this.position + " " + gclass("container");
             containerElement.style.zIndex = "2500";
             return containerElement;
         },
@@ -119,6 +121,8 @@ var Bootstrap5Toast = /** @class */ (function () {
             var toastElement = document.createElement("div");
             toastElement.classList.add("toast");
             container.setAttribute("data-id", this.id);
+            container.setAttribute("data-created-at", this.createdAt);
+            container.setAttribute("data-group", this.group);
             // Toast Header (only if option hideHeader is set to false).
             if (!this.options.hideHeader) {
                 toastElement.appendChild(this.buildHeader);
@@ -156,14 +160,18 @@ var Bootstrap5Toast = /** @class */ (function () {
     Object.defineProperty(Bootstrap5Toast.prototype, "rootElement", {
         /**
          *
-         * @returns {HTMLElement}
+         * @returns {Element}
          */
         get: function () {
             if (this.options.parent !== "body") {
-                var userRootElement = document.getElementById(this.options.parent);
+                var userRootElement = document.querySelector(this.options.parent);
                 if (!userRootElement) {
                     throw "User root element not exists.";
                 }
+                if (Array.isArray(userRootElement)) {
+                    return userRootElement[0];
+                }
+                this.customParent = true;
                 return userRootElement;
             }
             return document.body;
@@ -214,11 +222,14 @@ var Bootstrap5Toast = /** @class */ (function () {
     };
     Bootstrap5Toast.prototype.makeSound = function () {
         var sound = new Audio(notificationSound);
+        sound.id = "bootstrap5-toast-notification";
         this.sound = sound;
+        if (!this.rootElement.querySelector('#bootstrap5-toast-notification')) {
+            this.rootElement.appendChild(sound);
+        }
     };
     Bootstrap5Toast.prototype.playSound = function () {
         if (this.options.allowSound) {
-            console.log("yes");
             this.sound.play();
         }
     };
@@ -227,19 +238,24 @@ var Bootstrap5Toast = /** @class */ (function () {
         // @ts-ignore
         var topLeftOffsetSize = {
             top: 5,
-            button: 5,
+            bottom: 5,
         };
         // @ts-ignore
         var topRightOffsetSize = {
             top: 5,
-            button: 5,
+            bottom: 5,
         };
         // @ts-ignore
         var offsetSize = {
             top: 5,
-            button: 5,
+            bottom: 5,
         };
-        var toasts = document.querySelectorAll("." + gclass("container"));
+        var selector = "." + gclass("container") + "[data-group='" + this.group + "']";
+        var windowWidth = window.innerWidth > 0 ? window.innerWidth : screen.width;
+        if (windowWidth <= 360) {
+            selector = "." + gclass("container");
+        }
+        var toasts = document.querySelectorAll(selector);
         var classUsed;
         if (toasts.length > 0) {
             toasts.forEach(function (toast) {
@@ -249,13 +265,12 @@ var Bootstrap5Toast = /** @class */ (function () {
                 else {
                     classUsed = gclass("bottom");
                 }
-                var windowWidth = window.innerWidth > 0 ? window.innerWidth : screen.width;
                 var toastHeight = toast.offsetHeight;
                 classUsed = classUsed.substr((cprefix + "-").length - 1, classUsed.length - 1);
                 // Show toast in center if screen with less than or equal to 360px.
                 if (windowWidth <= 360) {
-                    toast.style[classUsed] = _this.spaceBetween + "px";
-                    topLeftOffsetSize[classUsed] += toastHeight + _this.spaceBetween;
+                    toast.style[classUsed] = offsetSize[classUsed] + "px";
+                    offsetSize[classUsed] += toastHeight + _this.spaceBetween;
                 }
                 else {
                     if (hasClass(toast, "start")) {

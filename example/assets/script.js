@@ -1,11 +1,6 @@
 const PushNotification = (options = {}) => {
   if (Bootstrap5Toast) {
     var toaster = Bootstrap5Toast.initialize({
-      title: "Nawaf Says",
-      avatar: "https://avatars.githubusercontent.com/u/16566503?s=20&v=4",
-      text: "I love you <3",
-      allowSound: true,
-      datatime: "2020-01-01 11:25:00",
       ...options,
     })
 
@@ -16,40 +11,75 @@ const PushNotification = (options = {}) => {
 const drawCode = (target) => {
   const formData = new FormData(target)
   const formValues = Object.fromEntries(formData.entries())
-  console.log(formValues)
   const codeResult = document.querySelector("#coderesult")
+
+  const html = document.getElementsByTagName("html")[0]
+  const css = document.getElementById("cssbootstrap")
+
+  if (formValues.rtl) {
+    html.dir = "rtl"
+    css.href =
+      "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.rtl.min.css"
+  } else {
+    html.dir = "ltr"
+    css.href =
+      "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+  }
+
   if (codeResult) {
     var regex = /<br\s*[\/]?>/gi
 
-    let code = `var toast = Bootstrap5Toast.initialize({
-        title: '${formValues.title}',
-        text: '${formValues.text},
-        position: '${formValues.position}'
+    let code = `// Result
+var toast = Bootstrap5Toast.initialize({
+  title: '${formValues.title}',
+  text: '${formValues.text}',
+  position: '${formValues.position}',
+  avatar: '${formValues.avatar}',
+  allowSound: ${formValues.allowSound ? true : false},
+  hideHeader: ${formValues.hideHeader ? true : false},
+  
+  // Parent node
+  parent: '${formValues.parent}',
+
+  // Show date
+  datetime: '${formValues.datetime}',
+  duration: ${formValues.duration},
+  space: ${formValues.space},
+
+  ${formValues.rtl ? "// RTL is automateclly recognized." : ""}
+
+  ${formValues.soundFile ? `soundFile: 1${formValues.soundFile}'` : ""}
 })`
 
-    codeResult.innerText = code
+    codeResult.innerHTML = code
+
+    lolight("#coderesult")
   }
 }
+
+const events = () => {
+  const inputControl = document.querySelectorAll(
+    "input.form-control, select.form-control, textarea.form-control,input[type='datetime-local']"
+  )
+  inputControl.forEach((input) => {
+    input.addEventListener("input", (evt) => drawCode(evt.target.form))
+  })
+
+  const selectControl = document.querySelectorAll(
+    "input[type='checkbox'].form-check-input, select.form-select"
+  )
+  selectControl.forEach((select) => {
+    select.addEventListener("change", (evt) => drawCode(evt.target.form))
+  })
+}
 document.addEventListener("DOMContentLoaded", () => {
+  // events
+
   // Code Mirror
   const form = document.querySelector("form")
   drawCode(form)
 
-  PushNotification({ position: Bootstrap5Toast.POSITION.TOP_END })
-
-  const otherControls = document.querySelector('.form-control,.form-select')
-  const inputControl = document.querySelector('input.form-control')
-  const textAreaControl = document.querySelector('textarea.form-control');
-  otherControls.addEventListener('change', (evt) => {
-    drawCode(evt.target.form)
-  })
-  inputControl.addEventListener('input', (evt) => {
-    drawCode(evt.target.form)
-  })
-  textAreaControl.addEventListener('input', (evt) => {
-    drawCode(evt.target.form)
-  })
-
+  events()
   const formSubmit = document.querySelector("#props-form")
 
   if (formSubmit) {
@@ -60,9 +90,10 @@ document.addEventListener("DOMContentLoaded", () => {
       var values = Object.fromEntries(data.entries())
 
       PushNotification({
-        title: values.title,
-        text: values.text,
-        position: Bootstrap5Toast.POSITION[values.position],
+        ...values,
+        onCloseCallBack: () => {
+          console.log("Bye bye.")
+        },
       })
     })
   }

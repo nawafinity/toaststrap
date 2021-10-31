@@ -6,6 +6,8 @@
 */
 $prefix: "bootstrap5-toast";
 
+$spaces: 5, 10, 15, 20;
+
 .#{$prefix} {
     &-container {
         display: none;
@@ -16,6 +18,7 @@ $prefix: "bootstrap5-toast";
 
             .toast {
                 display: block;
+                opacity: 1;
             }
         }
     }
@@ -28,26 +31,30 @@ $prefix: "bootstrap5-toast";
         bottom: -155px;
     }
 
-    &-start {
-        left: 5px;
+    @each $space in $spaces {
+        &-start-#{space} {
+            left: $space + px;
 
-        [dir='rtl'] & {
-            left: unset;
-            right: 5px;
+            [dir=rtl] & {
+                left: unset;
+                right: $space + px;
+            }
+        }
+
+        &-end-#{$space} {
+            right: $space + px;
+
+            [dir=rtl] & {
+                right: unset;
+                left: $space + px;
+            }
         }
     }
 
-    &-end {
-        right: 5px;
+    @media only screen and (max-width: 360px) {
 
-        [dir='rtl'] {
-            right: unset;
-            left: 5px;
-        }
-    }
-
-    @media only screen and (max-width: 360px)  {
-        &-start, &-end {
+        &-start,
+        &-end {
             margin-left: 0;
             margin-right: 0;
             left: 0;

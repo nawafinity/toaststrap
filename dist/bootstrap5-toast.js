@@ -1,2 +1,793 @@
-var Bootstrap5Toast;(()=>{var t={484:function(t){t.exports=function(){"use strict";var t=6e4,e=36e5,n="millisecond",r="second",i="minute",o="hour",s="day",a="week",u="month",d="quarter",c="year",h="date",l="Invalid Date",f=/^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/,p=/\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g,m={name:"en",weekdays:"Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),months:"January_February_March_April_May_June_July_August_September_October_November_December".split("_")},y=function(t,e,n){var r=String(t);return!r||r.length>=e?t:""+Array(e+1-r.length).join(n)+t},v={s:y,z:function(t){var e=-t.utcOffset(),n=Math.abs(e),r=Math.floor(n/60),i=n%60;return(e<=0?"+":"-")+y(r,2,"0")+":"+y(i,2,"0")},m:function t(e,n){if(e.date()<n.date())return-t(n,e);var r=12*(n.year()-e.year())+(n.month()-e.month()),i=e.clone().add(r,u),o=n-i<0,s=e.clone().add(r+(o?-1:1),u);return+(-(r+(n-i)/(o?i-s:s-i))||0)},a:function(t){return t<0?Math.ceil(t)||0:Math.floor(t)},p:function(t){return{M:u,y:c,w:a,d:s,D:h,h:o,m:i,s:r,ms:n,Q:d}[t]||String(t||"").toLowerCase().replace(/s$/,"")},u:function(t){return void 0===t}},g="en",b={};b[g]=m;var $=function(t){return t instanceof S},T=function(t,e,n){var r;if(!t)return g;if("string"==typeof t)b[t]&&(r=t),e&&(b[t]=e,r=t);else{var i=t.name;b[i]=t,r=i}return!n&&r&&(g=r),r||!n&&g},w=function(t,e){if($(t))return t.clone();var n="object"==typeof e?e:{};return n.date=t,n.args=arguments,new S(n)},M=v;M.l=T,M.i=$,M.w=function(t,e){return w(t,{locale:e.$L,utc:e.$u,x:e.$x,$offset:e.$offset})};var S=function(){function m(t){this.$L=T(t.locale,null,!0),this.parse(t)}var y=m.prototype;return y.parse=function(t){this.$d=function(t){var e=t.date,n=t.utc;if(null===e)return new Date(NaN);if(M.u(e))return new Date;if(e instanceof Date)return new Date(e);if("string"==typeof e&&!/Z$/i.test(e)){var r=e.match(f);if(r){var i=r[2]-1||0,o=(r[7]||"0").substring(0,3);return n?new Date(Date.UTC(r[1],i,r[3]||1,r[4]||0,r[5]||0,r[6]||0,o)):new Date(r[1],i,r[3]||1,r[4]||0,r[5]||0,r[6]||0,o)}}return new Date(e)}(t),this.$x=t.x||{},this.init()},y.init=function(){var t=this.$d;this.$y=t.getFullYear(),this.$M=t.getMonth(),this.$D=t.getDate(),this.$W=t.getDay(),this.$H=t.getHours(),this.$m=t.getMinutes(),this.$s=t.getSeconds(),this.$ms=t.getMilliseconds()},y.$utils=function(){return M},y.isValid=function(){return!(this.$d.toString()===l)},y.isSame=function(t,e){var n=w(t);return this.startOf(e)<=n&&n<=this.endOf(e)},y.isAfter=function(t,e){return w(t)<this.startOf(e)},y.isBefore=function(t,e){return this.endOf(e)<w(t)},y.$g=function(t,e,n){return M.u(t)?this[e]:this.set(n,t)},y.unix=function(){return Math.floor(this.valueOf()/1e3)},y.valueOf=function(){return this.$d.getTime()},y.startOf=function(t,e){var n=this,d=!!M.u(e)||e,l=M.p(t),f=function(t,e){var r=M.w(n.$u?Date.UTC(n.$y,e,t):new Date(n.$y,e,t),n);return d?r:r.endOf(s)},p=function(t,e){return M.w(n.toDate()[t].apply(n.toDate("s"),(d?[0,0,0,0]:[23,59,59,999]).slice(e)),n)},m=this.$W,y=this.$M,v=this.$D,g="set"+(this.$u?"UTC":"");switch(l){case c:return d?f(1,0):f(31,11);case u:return d?f(1,y):f(0,y+1);case a:var b=this.$locale().weekStart||0,$=(m<b?m+7:m)-b;return f(d?v-$:v+(6-$),y);case s:case h:return p(g+"Hours",0);case o:return p(g+"Minutes",1);case i:return p(g+"Seconds",2);case r:return p(g+"Milliseconds",3);default:return this.clone()}},y.endOf=function(t){return this.startOf(t,!1)},y.$set=function(t,e){var a,d=M.p(t),l="set"+(this.$u?"UTC":""),f=(a={},a[s]=l+"Date",a[h]=l+"Date",a[u]=l+"Month",a[c]=l+"FullYear",a[o]=l+"Hours",a[i]=l+"Minutes",a[r]=l+"Seconds",a[n]=l+"Milliseconds",a)[d],p=d===s?this.$D+(e-this.$W):e;if(d===u||d===c){var m=this.clone().set(h,1);m.$d[f](p),m.init(),this.$d=m.set(h,Math.min(this.$D,m.daysInMonth())).$d}else f&&this.$d[f](p);return this.init(),this},y.set=function(t,e){return this.clone().$set(t,e)},y.get=function(t){return this[M.p(t)]()},y.add=function(n,d){var h,l=this;n=Number(n);var f=M.p(d),p=function(t){var e=w(l);return M.w(e.date(e.date()+Math.round(t*n)),l)};if(f===u)return this.set(u,this.$M+n);if(f===c)return this.set(c,this.$y+n);if(f===s)return p(1);if(f===a)return p(7);var m=(h={},h[i]=t,h[o]=e,h[r]=1e3,h)[f]||1,y=this.$d.getTime()+n*m;return M.w(y,this)},y.subtract=function(t,e){return this.add(-1*t,e)},y.format=function(t){var e=this,n=this.$locale();if(!this.isValid())return n.invalidDate||l;var r=t||"YYYY-MM-DDTHH:mm:ssZ",i=M.z(this),o=this.$H,s=this.$m,a=this.$M,u=n.weekdays,d=n.months,c=function(t,n,i,o){return t&&(t[n]||t(e,r))||i[n].substr(0,o)},h=function(t){return M.s(o%12||12,t,"0")},f=n.meridiem||function(t,e,n){var r=t<12?"AM":"PM";return n?r.toLowerCase():r},m={YY:String(this.$y).slice(-2),YYYY:this.$y,M:a+1,MM:M.s(a+1,2,"0"),MMM:c(n.monthsShort,a,d,3),MMMM:c(d,a),D:this.$D,DD:M.s(this.$D,2,"0"),d:String(this.$W),dd:c(n.weekdaysMin,this.$W,u,2),ddd:c(n.weekdaysShort,this.$W,u,3),dddd:u[this.$W],H:String(o),HH:M.s(o,2,"0"),h:h(1),hh:h(2),a:f(o,s,!0),A:f(o,s,!1),m:String(s),mm:M.s(s,2,"0"),s:String(this.$s),ss:M.s(this.$s,2,"0"),SSS:M.s(this.$ms,3,"0"),Z:i};return r.replace(p,(function(t,e){return e||m[t]||i.replace(":","")}))},y.utcOffset=function(){return 15*-Math.round(this.$d.getTimezoneOffset()/15)},y.diff=function(n,h,l){var f,p=M.p(h),m=w(n),y=(m.utcOffset()-this.utcOffset())*t,v=this-m,g=M.m(this,m);return g=(f={},f[c]=g/12,f[u]=g,f[d]=g/3,f[a]=(v-y)/6048e5,f[s]=(v-y)/864e5,f[o]=v/e,f[i]=v/t,f[r]=v/1e3,f)[p]||v,l?g:M.a(g)},y.daysInMonth=function(){return this.endOf(u).$D},y.$locale=function(){return b[this.$L]},y.locale=function(t,e){if(!t)return this.$L;var n=this.clone(),r=T(t,e,!0);return r&&(n.$L=r),n},y.clone=function(){return M.w(this.$d,this)},y.toDate=function(){return new Date(this.valueOf())},y.toJSON=function(){return this.isValid()?this.toISOString():null},y.toISOString=function(){return this.$d.toISOString()},y.toString=function(){return this.$d.toUTCString()},m}(),O=S.prototype;return w.prototype=O,[["$ms",n],["$s",r],["$m",i],["$H",o],["$W",s],["$M",u],["$y",c],["$D",h]].forEach((function(t){O[t[1]]=function(e){return this.$g(e,t[0],t[1])}})),w.extend=function(t,e){return t.$i||(t(e,S,w),t.$i=!0),w},w.locale=T,w.isDayjs=$,w.unix=function(t){return w(1e3*t)},w.en=b[g],w.Ls=b,w.p={},w}()},110:function(t){t.exports=function(){"use strict";return function(t,e,n){t=t||{};var r=e.prototype,i={future:"in %s",past:"%s ago",s:"a few seconds",m:"a minute",mm:"%d minutes",h:"an hour",hh:"%d hours",d:"a day",dd:"%d days",M:"a month",MM:"%d months",y:"a year",yy:"%d years"};function o(t,e,n,i){return r.fromToBase(t,e,n,i)}n.en.relativeTime=i,r.fromToBase=function(e,r,o,s,a){for(var u,d,c,h=o.$locale().relativeTime||i,l=t.thresholds||[{l:"s",r:44,d:"second"},{l:"m",r:89},{l:"mm",r:44,d:"minute"},{l:"h",r:89},{l:"hh",r:21,d:"hour"},{l:"d",r:35},{l:"dd",r:25,d:"day"},{l:"M",r:45},{l:"MM",r:10,d:"month"},{l:"y",r:17},{l:"yy",d:"year"}],f=l.length,p=0;p<f;p+=1){var m=l[p];m.d&&(u=s?n(e).diff(o,m.d,!0):o.diff(e,m.d,!0));var y=(t.rounding||Math.round)(Math.abs(u));if(c=u>0,y<=m.r||!m.r){y<=1&&p>0&&(m=l[p-1]);var v=h[m.l];a&&(y=a(""+y)),d="string"==typeof v?v.replace("%d",y):v(y,r,m.l,c);break}}if(r)return d;var g=c?h.future:h.past;return"function"==typeof g?g(d):g.replace("%s",d)},r.to=function(t,e){return o(t,e,this,!0)},r.from=function(t,e){return o(t,e,this)};var s=function(t){return t.$u?n.utc():n()};r.toNow=function(t){return this.to(s(this),t)},r.fromNow=function(t){return this.from(s(this),t)}}}()}},e={};function n(r){var i=e[r];if(void 0!==i)return i.exports;var o=e[r]={exports:{}};return t[r].call(o.exports,o,o.exports,n),o.exports}n.n=t=>{var e=t&&t.__esModule?()=>t.default:()=>t;return n.d(e,{a:e}),e},n.d=(t,e)=>{for(var r in e)n.o(e,r)&&!n.o(t,r)&&Object.defineProperty(t,r,{enumerable:!0,get:e[r]})},n.g=function(){if("object"==typeof globalThis)return globalThis;try{return this||new Function("return this")()}catch(t){if("object"==typeof window)return window}}(),n.o=(t,e)=>Object.prototype.hasOwnProperty.call(t,e),n.r=t=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},(()=>{var t;n.g.importScripts&&(t=n.g.location+"");var e=n.g.document;if(!t&&e&&(e.currentScript&&(t=e.currentScript.src),!t)){var r=e.getElementsByTagName("script");r.length&&(t=r[r.length-1].src)}if(!t)throw new Error("Automatic publicPath is not supported in this browser");t=t.replace(/#.*$/,"").replace(/\?.*$/,"").replace(/\/[^\/]+$/,"/"),n.p=t})();var r={};(()=>{"use strict";n.r(r),n.d(r,{POSITION:()=>t,initialize:()=>w});var t,e="bootstrap5-toast-";function i(t){return e+t}!function(t){t.TOP_START="TOP_START",t.TOP_END="TOP_END",t.BOTTOM_START="BOTTOM_START",t.BOTTOM_END="BOTTOM_END",t.CENTER_START="CENTER_START",t.CENTER_END="CENTER_END",t.CENTER="CENTER"}(t||(t={}));const o={positions:{TOP_START:i("top")+" "+i("start"),TOP_END:i("top")+" "+i("end"),TOP_CENTER:"",MIDDLE_LEFT:"",MIDDLE_RIGHT:"",BOTTOM_START:i("bottom")+" "+i("start"),BOTTOM_END:i("bottom")+" "+i("end")}};var s,a=n(484),u=n.n(a),d=new Uint8Array(16);function c(){if(!s&&!(s="undefined"!=typeof crypto&&crypto.getRandomValues&&crypto.getRandomValues.bind(crypto)||"undefined"!=typeof msCrypto&&"function"==typeof msCrypto.getRandomValues&&msCrypto.getRandomValues.bind(msCrypto)))throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");return s(d)}const h=/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i,l=function(t){return"string"==typeof t&&h.test(t)};for(var f=[],p=0;p<256;++p)f.push((p+256).toString(16).substr(1));const m=function(t,e,n){var r=(t=t||{}).random||(t.rng||c)();if(r[6]=15&r[6]|64,r[8]=63&r[8]|128,e){n=n||0;for(var i=0;i<16;++i)e[n+i]=r[i];return e}return function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:0,n=(f[t[e+0]]+f[t[e+1]]+f[t[e+2]]+f[t[e+3]]+"-"+f[t[e+4]]+f[t[e+5]]+"-"+f[t[e+6]]+f[t[e+7]]+"-"+f[t[e+8]]+f[t[e+9]]+"-"+f[t[e+10]]+f[t[e+11]]+f[t[e+12]]+f[t[e+13]]+f[t[e+14]]+f[t[e+15]]).toLowerCase();if(!l(n))throw TypeError("Stringified UUID is invalid");return n}(r)};var y=n(110),v=n.n(y);const g=n.p+"/assets/sound.wav";var b=function(t,e){return t.classList.contains(e)},$=function(){return $=Object.assign||function(t){for(var e,n=1,r=arguments.length;n<r;n++)for(var i in e=arguments[n])Object.prototype.hasOwnProperty.call(e,i)&&(t[i]=e[i]);return t},$.apply(this,arguments)};u().extend(v());var T=function(){function n(e){this.options=$({title:"",text:"",type:"info",hideHeader:!1,position:t.TOP_END,parent:"body",allowSound:!1},e),Object.keys(t).includes(this.options.position)?this.position=o.positions[this.options.position]:this.position=o.positions.TOP_END,this.id=m(),this.createdAt=this.getHumanTime(),this.item=document.createElement("div"),this.spaceBetween=5,this.sound=new Audio,this.group=this.options.position,this.options.allowSound&&this.makeSound(),this.options.datatime?this.createdAt=this.options.datatime:this.createdAt=u()().toString()}return n.prototype.show=function(){var t=this.rootElement,e=this.buildToast;return t.insertBefore(e,t.firstChild),this.playSound(),this.orderize(),this},n.prototype.clearQueue=function(){},Object.defineProperty(n.prototype,"buildHeader",{get:function(){var t=document.createElement("div");t.classList.add("toast-header"),this.options.avatar&&t.appendChild(this.buildAvatar);var e=document.createElement("strong");e.classList.add("me-auto"),e.innerText=this.options.title,t.appendChild(e);var n=document.createElement("small");return n.innerText=this.getHumanTime(),t.appendChild(n),t.appendChild(this.buildCloseButton),t},enumerable:!1,configurable:!0}),Object.defineProperty(n.prototype,"buildBody",{get:function(){var t=document.createElement("div");return t.classList.add("toast-body"),t.innerHTML=this.options.text,t},enumerable:!1,configurable:!0}),Object.defineProperty(n.prototype,"buildContainer",{get:function(){var t=document.createElement("div");return t.className="position-fixed "+this.position+" "+i("container"),t.style.zIndex="2500",t},enumerable:!1,configurable:!0}),Object.defineProperty(n.prototype,"buildToast",{get:function(){var t=this.buildContainer,e=document.createElement("div");return e.classList.add("toast"),t.setAttribute("data-id",this.id),t.setAttribute("data-created-at",this.createdAt),t.setAttribute("data-group",this.group),this.options.hideHeader||e.appendChild(this.buildHeader),e.appendChild(this.buildBody),t.appendChild(e),this.item=t,t.classList.add("show"),t},enumerable:!1,configurable:!0}),Object.defineProperty(n.prototype,"buildAvatar",{get:function(){var t=document.createElement("img");return t.classList.add("rounded","me-2"),t.src=this.options.avatar,t.width=20,t.height=20,t},enumerable:!1,configurable:!0}),Object.defineProperty(n.prototype,"rootElement",{get:function(){if("body"!==this.options.parent){var t=document.getElementById(this.options.parent);if(!t)throw"User root element not exists.";return t}return document.body},enumerable:!1,configurable:!0}),Object.defineProperty(n.prototype,"buildCloseButton",{get:function(){var t=this,e=document.createElement("button");return e.classList.add("btn-close"),e.setAttribute("type","button"),e.setAttribute("area-label","Close"),e.addEventListener("click",(function(e){e.stopPropagation(),t.removeElement(t.item),"function"==typeof t.options.onCloseCallBack&&t.options.onCloseCallBack(),t.orderize()})),e},enumerable:!1,configurable:!0}),n.prototype.getHumanTime=function(){return u()(this.createdAt).fromNow()},n.prototype.removeElement=function(t){t.classList.remove("show"),window.setTimeout((function(){var e;null===(e=t.parentNode)||void 0===e||e.removeChild(t)}),400)},n.prototype.makeSound=function(){var t=new Audio(g);t.id="bootstrap5-toast-notification",this.sound=t,this.rootElement.querySelector("#bootstrap5-toast-notification")||this.rootElement.appendChild(t)},n.prototype.playSound=function(){this.options.allowSound&&this.sound.play()},n.prototype.orderize=function(){var t=this,n={top:5,bottom:5},r={top:5,bottom:5},o={top:5,bottom:5},s="."+i("container")+"[data-group='"+this.group+"']",a=window.innerWidth>0?window.innerWidth:screen.width;a<=360&&(s="."+i("container"));var u,d=document.querySelectorAll(s);d.length>0&&d.forEach((function(s){u=b(s,i("top"))?i("top"):i("bottom");var d=s.offsetHeight;u=u.substr((e+"-").length-1,u.length-1),a<=360?(s.style[u]=o[u]+"px",o[u]+=d+t.spaceBetween):b(s,"start")?(s.style[u]=n[u]+"px",n[u]+=d+t.spaceBetween):(s.style[u]=r[u]+"px",r[u]+=d+t.spaceBetween)}))},n}();function w(t){return new T(t)}})(),Bootstrap5Toast=r})();
+var Bootstrap5Toast;
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./node_modules/dayjs/dayjs.min.js":
+/*!*****************************************!*\
+  !*** ./node_modules/dayjs/dayjs.min.js ***!
+  \*****************************************/
+/***/ (function(module) {
+
+!function(t,e){ true?module.exports=e():0}(this,(function(){"use strict";var t=1e3,e=6e4,n=36e5,r="millisecond",i="second",s="minute",u="hour",a="day",o="week",f="month",h="quarter",c="year",d="date",$="Invalid Date",l=/^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/,y=/\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g,M={name:"en",weekdays:"Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),months:"January_February_March_April_May_June_July_August_September_October_November_December".split("_")},m=function(t,e,n){var r=String(t);return!r||r.length>=e?t:""+Array(e+1-r.length).join(n)+t},g={s:m,z:function(t){var e=-t.utcOffset(),n=Math.abs(e),r=Math.floor(n/60),i=n%60;return(e<=0?"+":"-")+m(r,2,"0")+":"+m(i,2,"0")},m:function t(e,n){if(e.date()<n.date())return-t(n,e);var r=12*(n.year()-e.year())+(n.month()-e.month()),i=e.clone().add(r,f),s=n-i<0,u=e.clone().add(r+(s?-1:1),f);return+(-(r+(n-i)/(s?i-u:u-i))||0)},a:function(t){return t<0?Math.ceil(t)||0:Math.floor(t)},p:function(t){return{M:f,y:c,w:o,d:a,D:d,h:u,m:s,s:i,ms:r,Q:h}[t]||String(t||"").toLowerCase().replace(/s$/,"")},u:function(t){return void 0===t}},D="en",v={};v[D]=M;var p=function(t){return t instanceof _},S=function(t,e,n){var r;if(!t)return D;if("string"==typeof t)v[t]&&(r=t),e&&(v[t]=e,r=t);else{var i=t.name;v[i]=t,r=i}return!n&&r&&(D=r),r||!n&&D},w=function(t,e){if(p(t))return t.clone();var n="object"==typeof e?e:{};return n.date=t,n.args=arguments,new _(n)},O=g;O.l=S,O.i=p,O.w=function(t,e){return w(t,{locale:e.$L,utc:e.$u,x:e.$x,$offset:e.$offset})};var _=function(){function M(t){this.$L=S(t.locale,null,!0),this.parse(t)}var m=M.prototype;return m.parse=function(t){this.$d=function(t){var e=t.date,n=t.utc;if(null===e)return new Date(NaN);if(O.u(e))return new Date;if(e instanceof Date)return new Date(e);if("string"==typeof e&&!/Z$/i.test(e)){var r=e.match(l);if(r){var i=r[2]-1||0,s=(r[7]||"0").substring(0,3);return n?new Date(Date.UTC(r[1],i,r[3]||1,r[4]||0,r[5]||0,r[6]||0,s)):new Date(r[1],i,r[3]||1,r[4]||0,r[5]||0,r[6]||0,s)}}return new Date(e)}(t),this.$x=t.x||{},this.init()},m.init=function(){var t=this.$d;this.$y=t.getFullYear(),this.$M=t.getMonth(),this.$D=t.getDate(),this.$W=t.getDay(),this.$H=t.getHours(),this.$m=t.getMinutes(),this.$s=t.getSeconds(),this.$ms=t.getMilliseconds()},m.$utils=function(){return O},m.isValid=function(){return!(this.$d.toString()===$)},m.isSame=function(t,e){var n=w(t);return this.startOf(e)<=n&&n<=this.endOf(e)},m.isAfter=function(t,e){return w(t)<this.startOf(e)},m.isBefore=function(t,e){return this.endOf(e)<w(t)},m.$g=function(t,e,n){return O.u(t)?this[e]:this.set(n,t)},m.unix=function(){return Math.floor(this.valueOf()/1e3)},m.valueOf=function(){return this.$d.getTime()},m.startOf=function(t,e){var n=this,r=!!O.u(e)||e,h=O.p(t),$=function(t,e){var i=O.w(n.$u?Date.UTC(n.$y,e,t):new Date(n.$y,e,t),n);return r?i:i.endOf(a)},l=function(t,e){return O.w(n.toDate()[t].apply(n.toDate("s"),(r?[0,0,0,0]:[23,59,59,999]).slice(e)),n)},y=this.$W,M=this.$M,m=this.$D,g="set"+(this.$u?"UTC":"");switch(h){case c:return r?$(1,0):$(31,11);case f:return r?$(1,M):$(0,M+1);case o:var D=this.$locale().weekStart||0,v=(y<D?y+7:y)-D;return $(r?m-v:m+(6-v),M);case a:case d:return l(g+"Hours",0);case u:return l(g+"Minutes",1);case s:return l(g+"Seconds",2);case i:return l(g+"Milliseconds",3);default:return this.clone()}},m.endOf=function(t){return this.startOf(t,!1)},m.$set=function(t,e){var n,o=O.p(t),h="set"+(this.$u?"UTC":""),$=(n={},n[a]=h+"Date",n[d]=h+"Date",n[f]=h+"Month",n[c]=h+"FullYear",n[u]=h+"Hours",n[s]=h+"Minutes",n[i]=h+"Seconds",n[r]=h+"Milliseconds",n)[o],l=o===a?this.$D+(e-this.$W):e;if(o===f||o===c){var y=this.clone().set(d,1);y.$d[$](l),y.init(),this.$d=y.set(d,Math.min(this.$D,y.daysInMonth())).$d}else $&&this.$d[$](l);return this.init(),this},m.set=function(t,e){return this.clone().$set(t,e)},m.get=function(t){return this[O.p(t)]()},m.add=function(r,h){var d,$=this;r=Number(r);var l=O.p(h),y=function(t){var e=w($);return O.w(e.date(e.date()+Math.round(t*r)),$)};if(l===f)return this.set(f,this.$M+r);if(l===c)return this.set(c,this.$y+r);if(l===a)return y(1);if(l===o)return y(7);var M=(d={},d[s]=e,d[u]=n,d[i]=t,d)[l]||1,m=this.$d.getTime()+r*M;return O.w(m,this)},m.subtract=function(t,e){return this.add(-1*t,e)},m.format=function(t){var e=this,n=this.$locale();if(!this.isValid())return n.invalidDate||$;var r=t||"YYYY-MM-DDTHH:mm:ssZ",i=O.z(this),s=this.$H,u=this.$m,a=this.$M,o=n.weekdays,f=n.months,h=function(t,n,i,s){return t&&(t[n]||t(e,r))||i[n].substr(0,s)},c=function(t){return O.s(s%12||12,t,"0")},d=n.meridiem||function(t,e,n){var r=t<12?"AM":"PM";return n?r.toLowerCase():r},l={YY:String(this.$y).slice(-2),YYYY:this.$y,M:a+1,MM:O.s(a+1,2,"0"),MMM:h(n.monthsShort,a,f,3),MMMM:h(f,a),D:this.$D,DD:O.s(this.$D,2,"0"),d:String(this.$W),dd:h(n.weekdaysMin,this.$W,o,2),ddd:h(n.weekdaysShort,this.$W,o,3),dddd:o[this.$W],H:String(s),HH:O.s(s,2,"0"),h:c(1),hh:c(2),a:d(s,u,!0),A:d(s,u,!1),m:String(u),mm:O.s(u,2,"0"),s:String(this.$s),ss:O.s(this.$s,2,"0"),SSS:O.s(this.$ms,3,"0"),Z:i};return r.replace(y,(function(t,e){return e||l[t]||i.replace(":","")}))},m.utcOffset=function(){return 15*-Math.round(this.$d.getTimezoneOffset()/15)},m.diff=function(r,d,$){var l,y=O.p(d),M=w(r),m=(M.utcOffset()-this.utcOffset())*e,g=this-M,D=O.m(this,M);return D=(l={},l[c]=D/12,l[f]=D,l[h]=D/3,l[o]=(g-m)/6048e5,l[a]=(g-m)/864e5,l[u]=g/n,l[s]=g/e,l[i]=g/t,l)[y]||g,$?D:O.a(D)},m.daysInMonth=function(){return this.endOf(f).$D},m.$locale=function(){return v[this.$L]},m.locale=function(t,e){if(!t)return this.$L;var n=this.clone(),r=S(t,e,!0);return r&&(n.$L=r),n},m.clone=function(){return O.w(this.$d,this)},m.toDate=function(){return new Date(this.valueOf())},m.toJSON=function(){return this.isValid()?this.toISOString():null},m.toISOString=function(){return this.$d.toISOString()},m.toString=function(){return this.$d.toUTCString()},M}(),b=_.prototype;return w.prototype=b,[["$ms",r],["$s",i],["$m",s],["$H",u],["$W",a],["$M",f],["$y",c],["$D",d]].forEach((function(t){b[t[1]]=function(e){return this.$g(e,t[0],t[1])}})),w.extend=function(t,e){return t.$i||(t(e,_,w),t.$i=!0),w},w.locale=S,w.isDayjs=p,w.unix=function(t){return w(1e3*t)},w.en=v[D],w.Ls=v,w.p={},w}));
+
+/***/ }),
+
+/***/ "./node_modules/dayjs/plugin/relativeTime.js":
+/*!***************************************************!*\
+  !*** ./node_modules/dayjs/plugin/relativeTime.js ***!
+  \***************************************************/
+/***/ (function(module) {
+
+!function(r,e){ true?module.exports=e():0}(this,(function(){"use strict";return function(r,e,t){r=r||{};var n=e.prototype,o={future:"in %s",past:"%s ago",s:"a few seconds",m:"a minute",mm:"%d minutes",h:"an hour",hh:"%d hours",d:"a day",dd:"%d days",M:"a month",MM:"%d months",y:"a year",yy:"%d years"};function i(r,e,t,o){return n.fromToBase(r,e,t,o)}t.en.relativeTime=o,n.fromToBase=function(e,n,i,d,u){for(var f,a,s,l=i.$locale().relativeTime||o,h=r.thresholds||[{l:"s",r:44,d:"second"},{l:"m",r:89},{l:"mm",r:44,d:"minute"},{l:"h",r:89},{l:"hh",r:21,d:"hour"},{l:"d",r:35},{l:"dd",r:25,d:"day"},{l:"M",r:45},{l:"MM",r:10,d:"month"},{l:"y",r:17},{l:"yy",d:"year"}],m=h.length,c=0;c<m;c+=1){var y=h[c];y.d&&(f=d?t(e).diff(i,y.d,!0):i.diff(e,y.d,!0));var p=(r.rounding||Math.round)(Math.abs(f));if(s=f>0,p<=y.r||!y.r){p<=1&&c>0&&(y=h[c-1]);var v=l[y.l];u&&(p=u(""+p)),a="string"==typeof v?v.replace("%d",p):v(p,n,y.l,s);break}}if(n)return a;var M=s?l.future:l.past;return"function"==typeof M?M(a):M.replace("%s",a)},n.to=function(r,e){return i(r,e,this,!0)},n.from=function(r,e){return i(r,e,this)};var d=function(r){return r.$u?t.utc():t()};n.toNow=function(r){return this.to(d(this),r)},n.fromNow=function(r){return this.from(d(this),r)}}}));
+
+/***/ }),
+
+/***/ "./src/assets/sound.wav":
+/*!******************************!*\
+  !*** ./src/assets/sound.wav ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "/assets/sound.wav");
+
+/***/ }),
+
+/***/ "./src/assets/styles.scss":
+/*!********************************!*\
+  !*** ./src/assets/styles.scss ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/ToastFactory.ts":
+/*!*****************************!*\
+  !*** ./src/ToastFactory.ts ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Bootstrap5Toast": () => (/* binding */ Bootstrap5Toast)
+/* harmony export */ });
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dayjs */ "./node_modules/dayjs/dayjs.min.js");
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+/* harmony import */ var dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! dayjs/plugin/relativeTime */ "./node_modules/dayjs/plugin/relativeTime.js");
+/* harmony import */ var dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _prefrences__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./prefrences */ "./src/prefrences.ts");
+/* harmony import */ var _assets_styles_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./assets/styles.scss */ "./src/assets/styles.scss");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./helpers */ "./src/helpers.ts");
+/* harmony import */ var _support_header__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./support/header */ "./src/support/header.ts");
+/* harmony import */ var _support_body__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./support/body */ "./src/support/body.ts");
+/* harmony import */ var _support_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./support/container */ "./src/support/container.ts");
+/* harmony import */ var _support_sound__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./support/sound */ "./src/support/sound.ts");
+/* harmony import */ var _assets_sound_wav__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./assets/sound.wav */ "./src/assets/sound.wav");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+
+
+
+
+
+
+
+
+
+
+dayjs__WEBPACK_IMPORTED_MODULE_0___default().extend((dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1___default()));
+/**
+ * JavaScript library for showing a bootstrap5 toast notification.
+ *
+ * @author Nawaf Khalifah
+ * @version 1.0.0
+ */
+var Bootstrap5Toast = /** @class */ (function () {
+    function Bootstrap5Toast(options) {
+        var _this = this;
+        /**
+         * Event to close toast.
+         *
+         * @return {void}
+         */
+        this.CloseEvent = function () {
+            _this.removeElement(_this.item);
+        };
+        this.options = __assign({ id: (0,uuid__WEBPACK_IMPORTED_MODULE_10__["default"])(), title: "", text: "", type: "default", hideHeader: false, position: _prefrences__WEBPACK_IMPORTED_MODULE_2__.POSITION.TOP_END, allowSound: false, duration: 3, space: 5 }, options);
+        if (this.options.duration > 0) {
+            this.options.duration = this.options.duration * 1000;
+        }
+        if (Object.keys(_prefrences__WEBPACK_IMPORTED_MODULE_2__.POSITION).includes(this.options.position)) {
+            this.options.position = _prefrences__WEBPACK_IMPORTED_MODULE_2__["default"].positions[this.options.position];
+        }
+        else {
+            this.options.position = _prefrences__WEBPACK_IMPORTED_MODULE_2__["default"].positions.TOP_END;
+        }
+        this.item = document.createElement("div");
+        this.spaceBetween = 5;
+        this.sound = this.options.allowSound ? new _support_sound__WEBPACK_IMPORTED_MODULE_8__["default"](this.options.soundFile ? this.options.soundFile : _assets_sound_wav__WEBPACK_IMPORTED_MODULE_9__["default"], this.parentElement) : undefined;
+        this.group = this.options.position;
+    }
+    /**
+     * Display toast to user.
+     *
+     * @returns {this}
+     */
+    Bootstrap5Toast.prototype.show = function () {
+        var root = this.parentElement;
+        var toast = this.build;
+        root.insertBefore(toast, root.firstChild);
+        // Play sound if it's allowed.
+        if (this.sound) {
+            this.sound.instance.play();
+        }
+        // Order toasts.
+        this.orderize();
+        return this;
+    };
+    Object.defineProperty(Bootstrap5Toast.prototype, "build", {
+        /**
+         * Build toast element.
+         *
+         * @returns {HTMLElement}
+         */
+        get: function () {
+            var _this = this;
+            // Container Element
+            var container = (0,_support_container__WEBPACK_IMPORTED_MODULE_7__.ToastContainer)(this);
+            // Toast Element
+            var toastElement = document.createElement("div");
+            toastElement.classList.add("toast");
+            container.setAttribute("data-id", this.options.id);
+            container.setAttribute("data-created-at", this.options.datetime);
+            container.setAttribute("data-group", this.group);
+            // Toast Header (only if option hideHeader is set to false).
+            if (!this.options.hideHeader) {
+                toastElement.appendChild((0,_support_header__WEBPACK_IMPORTED_MODULE_5__.HeaderComponent)(this));
+            }
+            if (this.options.type) {
+                toastElement.classList.add("bg-" + this.options.type);
+            }
+            // Toast Body
+            toastElement.appendChild((0,_support_body__WEBPACK_IMPORTED_MODULE_6__.ToastBody)(this));
+            // Put toast into it's container.
+            container.appendChild(toastElement);
+            // Toast instance.
+            this.item = container;
+            // Show the toast by adding class (.show)
+            container.classList.add("show");
+            if (this.options.duration > 0) {
+                setTimeout(function () {
+                    _this.removeElement(container);
+                }, this.options.duration);
+            }
+            // Return toast instance.
+            return container;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Bootstrap5Toast.prototype, "parentElement", {
+        /**
+         *
+         * @returns {Element}
+         */
+        get: function () {
+            if (this.options.parent) {
+                var userRootElement = document.querySelector(this.options.parent);
+                if (!userRootElement) {
+                    throw "User root element not exists.";
+                }
+                if (Array.isArray(userRootElement)) {
+                    return userRootElement[0];
+                }
+                return userRootElement;
+            }
+            return document.body;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    /**
+     * Remove the element from dom after timeout finished.
+     */
+    Bootstrap5Toast.prototype.removeElement = function (toastElement) {
+        // Hide the element.
+        toastElement.classList.remove("show");
+        if (typeof this.options.onCloseCallBack === "function") {
+            this.options.onCloseCallBack(this);
+        }
+        window.setTimeout(function () {
+            var _a;
+            (_a = toastElement.parentNode) === null || _a === void 0 ? void 0 : _a.removeChild(toastElement);
+        }, 400);
+        this.orderize();
+    };
+    Bootstrap5Toast.prototype.orderize = function () {
+        var _this = this;
+        var space = this.options.space;
+        var topLeftOffsetSize = {
+            top: Number(space),
+            bottom: Number(space),
+        };
+        var topRightOffsetSize = {
+            top: Number(space),
+            bottom: Number(space),
+        };
+        var offsetSize = {
+            top: Number(space),
+            bottom: Number(space),
+        };
+        console.log(space, offsetSize, topRightOffsetSize, topLeftOffsetSize);
+        var selector = "." + (0,_prefrences__WEBPACK_IMPORTED_MODULE_2__.gclass)("container") + "[data-group='" + this.group + "']";
+        var windowWidth = window.innerWidth > 0 ? window.innerWidth : screen.width;
+        if (windowWidth <= 360) {
+            selector = "." + (0,_prefrences__WEBPACK_IMPORTED_MODULE_2__.gclass)("container");
+        }
+        var toasts = document.querySelectorAll(selector);
+        var classUsed;
+        if (toasts.length > 0) {
+            toasts.forEach(function (toast) {
+                if ((0,_helpers__WEBPACK_IMPORTED_MODULE_4__.hasClass)(toast, (0,_prefrences__WEBPACK_IMPORTED_MODULE_2__.gclass)("top"))) {
+                    classUsed = (0,_prefrences__WEBPACK_IMPORTED_MODULE_2__.gclass)("top");
+                }
+                else {
+                    classUsed = (0,_prefrences__WEBPACK_IMPORTED_MODULE_2__.gclass)("bottom");
+                }
+                var toastHeight = toast.offsetHeight;
+                classUsed = classUsed.substr((_prefrences__WEBPACK_IMPORTED_MODULE_2__.cprefix + "-").length - 1, classUsed.length - 1);
+                // Show toast in center if screen with less than or equal to 360px.
+                if (windowWidth <= 360) {
+                    toast.style[classUsed] = offsetSize[classUsed] + "px";
+                    offsetSize[classUsed] += toastHeight + _this.spaceBetween;
+                }
+                else {
+                    if ((0,_helpers__WEBPACK_IMPORTED_MODULE_4__.hasClass)(toast, "start-" + _this.options.space)) {
+                        toast.style[classUsed] = topLeftOffsetSize[classUsed] + "px";
+                        topLeftOffsetSize[classUsed] += toastHeight + _this.spaceBetween;
+                    }
+                    else {
+                        toast.style[classUsed] = topRightOffsetSize[classUsed] + "px";
+                        topRightOffsetSize[classUsed] += toastHeight + _this.spaceBetween;
+                    }
+                }
+            });
+        }
+    };
+    return Bootstrap5Toast;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/helpers.ts":
+/*!************************!*\
+  !*** ./src/helpers.ts ***!
+  \************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "hasClass": () => (/* binding */ hasClass),
+/* harmony export */   "getHumanTime": () => (/* binding */ getHumanTime)
+/* harmony export */ });
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dayjs */ "./node_modules/dayjs/dayjs.min.js");
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_0__);
+
+var hasClass = function (element, className) {
+    return element.classList.contains(className);
+};
+var getHumanTime = function (datetime) {
+    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(datetime).fromNow();
+};
+
+
+
+/***/ }),
+
+/***/ "./src/prefrences.ts":
+/*!***************************!*\
+  !*** ./src/prefrences.ts ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "cprefix": () => (/* binding */ cprefix),
+/* harmony export */   "gclass": () => (/* binding */ gclass),
+/* harmony export */   "POSITION": () => (/* binding */ POSITION),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var cprefix = 'bootstrap5-toast-';
+function gclass(c) {
+    return cprefix + c;
+}
+var POSITION;
+(function (POSITION) {
+    POSITION["TOP_START"] = "TOP_START";
+    POSITION["TOP_END"] = "TOP_END";
+    POSITION["BOTTOM_START"] = "BOTTOM_START";
+    POSITION["BOTTOM_END"] = "BOTTOM_END";
+    POSITION["CENTER_START"] = "CENTER_START";
+    POSITION["CENTER_END"] = "CENTER_END";
+    POSITION["CENTER"] = "CENTER";
+})(POSITION || (POSITION = {}));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+    positions: {
+        // TOP
+        TOP_START: gclass('top') + ' ' + gclass('start'),
+        TOP_END: gclass('top') + ' ' + gclass('end'),
+        TOP_CENTER: '',
+        // Middle
+        MIDDLE_LEFT: '',
+        MIDDLE_RIGHT: '',
+        // Bottom
+        BOTTOM_START: gclass('bottom') + ' ' + gclass('start'),
+        BOTTOM_END: gclass('bottom') + ' ' + gclass('end'),
+    },
+    types: {
+        DEFAULT: '',
+        PRIMARY: '',
+        SUCCESS: '',
+        WARNING: '',
+        DANGER: ''
+    }
+});
+
+
+/***/ }),
+
+/***/ "./src/support/body.ts":
+/*!*****************************!*\
+  !*** ./src/support/body.ts ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ToastBody": () => (/* binding */ ToastBody)
+/* harmony export */ });
+var ToastBody = function (context) {
+    var options = context.options;
+    var bodyElement = document.createElement("div");
+    bodyElement.classList.add("toast-body");
+    bodyElement.innerHTML = options.text;
+    return bodyElement;
+};
+
+
+/***/ }),
+
+/***/ "./src/support/container.ts":
+/*!**********************************!*\
+  !*** ./src/support/container.ts ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ToastContainer": () => (/* binding */ ToastContainer)
+/* harmony export */ });
+/* harmony import */ var _prefrences__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../prefrences */ "./src/prefrences.ts");
+
+var ToastContainer = function (context) {
+    var options = context.options;
+    var containerElement = document.createElement("div");
+    containerElement.className = (context.options.parent ? "position-absolute" : "position-fixed") + " " + options.position + "-" + options.space + " " + (0,_prefrences__WEBPACK_IMPORTED_MODULE_0__.gclass)("container");
+    containerElement.style.zIndex = "2500";
+    return containerElement;
+};
+
+
+/***/ }),
+
+/***/ "./src/support/header.ts":
+/*!*******************************!*\
+  !*** ./src/support/header.ts ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HeaderComponent": () => (/* binding */ HeaderComponent)
+/* harmony export */ });
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers */ "./src/helpers.ts");
+
+var AvatarComponent = function (options) {
+    var avatarElement = document.createElement("img");
+    avatarElement.classList.add("rounded", "me-2");
+    avatarElement.src = options.avatar || "";
+    avatarElement.width = 20;
+    avatarElement.height = 20;
+    return avatarElement;
+};
+var CloseButtonComponent = function (onCloseEvent) {
+    var closeBtnElement = document.createElement("button");
+    closeBtnElement.classList.add("btn-close");
+    closeBtnElement.setAttribute("type", "button");
+    closeBtnElement.setAttribute("area-label", "Close");
+    closeBtnElement.addEventListener("click", function (evt) {
+        evt.stopPropagation();
+        onCloseEvent();
+    });
+    return closeBtnElement;
+};
+var HeaderComponent = function (context) {
+    var options = context.options;
+    var headerElement = document.createElement("div");
+    headerElement.classList.add("toast-header");
+    // Avatar element
+    if (options.avatar) {
+        headerElement.appendChild(AvatarComponent(options));
+    }
+    // Create title element.
+    var titleElement = document.createElement("strong");
+    titleElement.classList.add("me-auto");
+    titleElement.innerText = options.title;
+    headerElement.appendChild(titleElement);
+    if (options.datetime) {
+        // time
+        var timeElement = document.createElement("small");
+        timeElement.innerText = (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.getHumanTime)(options.datetime);
+        headerElement.appendChild(timeElement);
+    }
+    // Close button
+    headerElement.appendChild(CloseButtonComponent(context.CloseEvent));
+    // Return header element.
+    return headerElement;
+};
+
+
+/***/ }),
+
+/***/ "./src/support/sound.ts":
+/*!******************************!*\
+  !*** ./src/support/sound.ts ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _prefrences__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../prefrences */ "./src/prefrences.ts");
+
+var Sound = /** @class */ (function () {
+    function Sound(audioFile, parentElement) {
+        this.selector = _prefrences__WEBPACK_IMPORTED_MODULE_0__.cprefix + "-notification";
+        this.element = new Audio(audioFile);
+        this.parent = parentElement;
+        this.make();
+        return this;
+    }
+    ;
+    Sound.prototype.make = function () {
+        this.element.id = this.selector;
+        if (!this.parent.querySelector('#' + this.selector)) {
+            this.parent.appendChild(this.element);
+        }
+    };
+    Object.defineProperty(Sound.prototype, "instance", {
+        get: function () {
+            return this.element;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    return Sound;
+}());
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Sound);
+
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-browser/regex.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/regex.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i);
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-browser/rng.js":
+/*!***************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/rng.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ rng)
+/* harmony export */ });
+// Unique ID creation requires a high quality random # generator. In the browser we therefore
+// require the crypto API and do not support built-in fallback to lower quality random number
+// generators (like Math.random()).
+var getRandomValues;
+var rnds8 = new Uint8Array(16);
+function rng() {
+  // lazy load so that environments that need to polyfill have a chance to do so
+  if (!getRandomValues) {
+    // getRandomValues needs to be invoked in a context where "this" is a Crypto implementation. Also,
+    // find the complete implementation of crypto (msCrypto) on IE11.
+    getRandomValues = typeof crypto !== 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto) || typeof msCrypto !== 'undefined' && typeof msCrypto.getRandomValues === 'function' && msCrypto.getRandomValues.bind(msCrypto);
+
+    if (!getRandomValues) {
+      throw new Error('crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported');
+    }
+  }
+
+  return getRandomValues(rnds8);
+}
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-browser/stringify.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/stringify.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validate.js */ "./node_modules/uuid/dist/esm-browser/validate.js");
+
+/**
+ * Convert array of 16 byte values to UUID string format of the form:
+ * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+ */
+
+var byteToHex = [];
+
+for (var i = 0; i < 256; ++i) {
+  byteToHex.push((i + 0x100).toString(16).substr(1));
+}
+
+function stringify(arr) {
+  var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  // Note: Be careful editing this code!  It's been tuned for performance
+  // and works in ways you may not expect. See https://github.com/uuidjs/uuid/pull/434
+  var uuid = (byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + '-' + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + '-' + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + '-' + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + '-' + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]).toLowerCase(); // Consistency check for valid UUID.  If this throws, it's likely due to one
+  // of the following:
+  // - One or more input array values don't map to a hex octet (leading to
+  // "undefined" in the uuid)
+  // - Invalid input values for the RFC `version` or `variant` fields
+
+  if (!(0,_validate_js__WEBPACK_IMPORTED_MODULE_0__["default"])(uuid)) {
+    throw TypeError('Stringified UUID is invalid');
+  }
+
+  return uuid;
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (stringify);
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-browser/v4.js":
+/*!**************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/v4.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _rng_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./rng.js */ "./node_modules/uuid/dist/esm-browser/rng.js");
+/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-browser/stringify.js");
+
+
+
+function v4(options, buf, offset) {
+  options = options || {};
+  var rnds = options.random || (options.rng || _rng_js__WEBPACK_IMPORTED_MODULE_0__["default"])(); // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
+
+  rnds[6] = rnds[6] & 0x0f | 0x40;
+  rnds[8] = rnds[8] & 0x3f | 0x80; // Copy bytes to buffer, if provided
+
+  if (buf) {
+    offset = offset || 0;
+
+    for (var i = 0; i < 16; ++i) {
+      buf[offset + i] = rnds[i];
+    }
+
+    return buf;
+  }
+
+  return (0,_stringify_js__WEBPACK_IMPORTED_MODULE_1__["default"])(rnds);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (v4);
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-browser/validate.js":
+/*!********************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/validate.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _regex_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./regex.js */ "./node_modules/uuid/dist/esm-browser/regex.js");
+
+
+function validate(uuid) {
+  return typeof uuid === 'string' && _regex_js__WEBPACK_IMPORTED_MODULE_0__["default"].test(uuid);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (validate);
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+/*!**********************!*\
+  !*** ./src/index.ts ***!
+  \**********************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "initialize": () => (/* binding */ initialize),
+/* harmony export */   "POSITION": () => (/* reexport safe */ _prefrences__WEBPACK_IMPORTED_MODULE_0__.POSITION)
+/* harmony export */ });
+/* harmony import */ var _prefrences__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./prefrences */ "./src/prefrences.ts");
+/* harmony import */ var _ToastFactory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ToastFactory */ "./src/ToastFactory.ts");
+
+
+var initialize = window.bs5toast = function (options) {
+    return new _ToastFactory__WEBPACK_IMPORTED_MODULE_1__.Bootstrap5Toast(options);
+};
+
+
+})();
+
+Bootstrap5Toast = __webpack_exports__;
+/******/ })()
+;
 //# sourceMappingURL=bootstrap5-toast.js.map

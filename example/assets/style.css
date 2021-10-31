@@ -2,8 +2,13 @@ body {
     background-color: #f5f8fa;
 }
 
+.examples {
+    position: relative;
+}
+
 .example-box {
     width: 60%;
+    position: relative;
 }
 
 .examples-props {

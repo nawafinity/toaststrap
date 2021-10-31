@@ -1,8 +1,95 @@
+/*!*****************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/assets/styles.scss ***!
+  \*****************************************************************************************************************/
 /*!
  * Bootstrap5 Toast v1.0.0
  * 
  * Copyright 2021 Nawafinity.
  *
-*/.bootstrap5-toast-container{display:none;transition:all .4s cubic-bezier(0.215, 0.61, 0.355, 1)}.bootstrap5-toast-container:is(.show){display:block}.bootstrap5-toast-container:is(.show) .toast{display:block}.bootstrap5-toast-top{top:-155px}.bootstrap5-toast-bottom{bottom:-155px}.bootstrap5-toast-start{left:5px}[dir=rtl] .bootstrap5-toast-start{left:unset;right:5px}.bootstrap5-toast-end{right:5px}.bootstrap5-toast-end [dir=rtl]{right:unset;left:5px}@media only screen and (max-width: 360px){.bootstrap5-toast-start,.bootstrap5-toast-end{margin-left:0;margin-right:0;left:0;right:0}.bootstrap5-toast-start .toast,.bootstrap5-toast-end .toast{margin:auto}}
+*/
+.bootstrap5-toast-container {
+  display: none;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.bootstrap5-toast-container:is(.show) {
+  display: block;
+}
+.bootstrap5-toast-container:is(.show) .toast {
+  display: block;
+  opacity: 1;
+}
+.bootstrap5-toast-top {
+  top: -155px;
+}
+.bootstrap5-toast-bottom {
+  bottom: -155px;
+}
+.bootstrap5-toast-start-space {
+  left: 5px;
+}
+[dir=rtl] .bootstrap5-toast-start-space {
+  left: unset;
+  right: 5px;
+}
+.bootstrap5-toast-end-5 {
+  right: 5px;
+}
+[dir=rtl] .bootstrap5-toast-end-5 {
+  right: unset;
+  left: 5px;
+}
+.bootstrap5-toast-start-space {
+  left: 10px;
+}
+[dir=rtl] .bootstrap5-toast-start-space {
+  left: unset;
+  right: 10px;
+}
+.bootstrap5-toast-end-10 {
+  right: 10px;
+}
+[dir=rtl] .bootstrap5-toast-end-10 {
+  right: unset;
+  left: 10px;
+}
+.bootstrap5-toast-start-space {
+  left: 15px;
+}
+[dir=rtl] .bootstrap5-toast-start-space {
+  left: unset;
+  right: 15px;
+}
+.bootstrap5-toast-end-15 {
+  right: 15px;
+}
+[dir=rtl] .bootstrap5-toast-end-15 {
+  right: unset;
+  left: 15px;
+}
+.bootstrap5-toast-start-space {
+  left: 20px;
+}
+[dir=rtl] .bootstrap5-toast-start-space {
+  left: unset;
+  right: 20px;
+}
+.bootstrap5-toast-end-20 {
+  right: 20px;
+}
+[dir=rtl] .bootstrap5-toast-end-20 {
+  right: unset;
+  left: 20px;
+}
+@media only screen and (max-width: 360px) {
+  .bootstrap5-toast-start, .bootstrap5-toast-end {
+    margin-left: 0;
+    margin-right: 0;
+    left: 0;
+    right: 0;
+  }
+  .bootstrap5-toast-start .toast, .bootstrap5-toast-end .toast {
+    margin: auto;
+  }
+}
 
 /*# sourceMappingURL=bootstrap5-toast.css.map*/

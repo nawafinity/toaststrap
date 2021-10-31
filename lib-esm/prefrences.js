@@ -22,8 +22,8 @@ export default {
         MIDDLE_LEFT: '',
         MIDDLE_RIGHT: '',
         // Bottom
-        BOTTOM_LEFT: '',
-        BOTTOM_RIGHT: '',
+        BOTTOM_START: gclass('bottom') + ' ' + gclass('start'),
+        BOTTOM_END: gclass('bottom') + ' ' + gclass('end'),
     }
 };
 //# sourceMappingURL=prefrences.js.map

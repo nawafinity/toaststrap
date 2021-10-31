@@ -4,8 +4,8 @@
   "description": "A javaScript library for showing a Bootstrap 5 toast notifications.",
   "main": "./lib/index.js",
   "scripts": {
-    "dev": "tsc && tsc -m es6 --outDir lib-esm && webpack --watch",
-    "build": "tsc && tsc -m es6 --outDir lib-esm && webpack",
+    "dev": "tsc && tsc -m es6 --outDir lib-esm && webpack --watch --mode development",
+    "build": "tsc && tsc -m es6 --outDir lib-esm && webpack --mode production",
     "browserify": "browserify -e ./lib/index.js > -o ./dist/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

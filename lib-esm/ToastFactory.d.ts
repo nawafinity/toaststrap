@@ -2,7 +2,7 @@ import "./assets/styles.scss";
 declare type OptionsType = {
     title: string;
     text: string;
-    datatime?: string;
+    datetime?: string;
     type?: "info" | "success" | "warrning" | "danger";
     hideHeader?: boolean;
     position?: string;
@@ -10,6 +10,7 @@ declare type OptionsType = {
     avatar?: string;
     onCloseCallBack?: () => void;
     allowSound: boolean;
+    duration: number;
 };
 declare class Bootstrap5Toast {
     options: OptionsType;
@@ -19,6 +20,8 @@ declare class Bootstrap5Toast {
     private sound;
     private spaceBetween;
     private position;
+    private group;
+    private customParent;
     constructor(options?: OptionsType);
     show(): this;
     clearQueue(): void;
@@ -48,7 +51,7 @@ declare class Bootstrap5Toast {
     private get buildAvatar();
     /**
      *
-     * @returns {HTMLElement}
+     * @returns {Element}
      */
     private get rootElement();
     /**

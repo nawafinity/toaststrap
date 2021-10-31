@@ -2,168 +2,167 @@ import dayjs from "dayjs";
 import { v4 } from "uuid";
 import relativeTime from "dayjs/plugin/relativeTime";
 import prefrences, { cprefix, gclass, POSITION } from "./prefrences";
-import notificationSound from "./assets/sound.wav";
 import "./assets/styles.scss";
 import { hasClass } from "./helpers";
+import { HeaderComponent } from "./support/header";
+import { ToastBody } from "./support/body";
+import { ToastContainer } from "./support/container";
+import Sound from './support/sound';
+import notificationSound from "./assets/sound.wav";
 
 dayjs.extend(relativeTime);
 
 declare type OptionsType = {
+  id: string;
+
+  // Toast title.
   title: string;
+
+  // Toast content {HTML allowed}.
   text: string;
-  datatime?: string;
-  type?: "info" | "success" | "warrning" | "danger";
+
+  // Toast datetime (Shows in header).
+  datetime?: string;
+
+  // Toast type.
+  type?: "default"| "info" | "success" | "warrning" | "danger"; 
+
+  // Hide the toast header.
   hideHeader?: boolean;
+
+  // Toast position.
   position?: string;
+
+  // Toast parentNode.
   parent?: string;
+
+  // Avatar (if set, the avatar will display).
   avatar?: string;
-  onCloseCallBack?: () => void;
+
+  // Margins
+  space: number;
+
+  // Custom sound file.
+  soundFile?: string;
+
+  // Allow sound?
   allowSound: boolean;
+
+  // Timeout duration.
+  duration: number;
+
+  // Call back happn when close toast.
+  onCloseCallBack?: (context: Bootstrap5Toast) => void;
+
 };
 
+/**
+ * JavaScript library for showing a bootstrap5 toast notification.
+ * 
+ * @author Nawaf Khalifah
+ * @version 1.0.0
+ */
 class Bootstrap5Toast {
-  options: OptionsType;
-  private id: string;
-  private createdAt: string;
+  public options: OptionsType;
   private item: HTMLElement;
-  private sound: HTMLAudioElement;
+  private sound: Sound | undefined;
   private spaceBetween: number;
-  private position: string;
   private group: string;
 
   constructor(options?: OptionsType) {
     this.options = {
+      id: v4(),
       title: "",
       text: "",
-      type: "info",
+      type: "default",
       hideHeader: false,
       position: POSITION.TOP_END,
-      parent: "body",
       allowSound: false,
+      duration: 3,
+      space: 5,
 
       // Override defaults.
       ...options,
     };
 
+    if (this.options.duration > 0) {
+      this.options.duration = this.options.duration * 1000
+    }
+
     if (Object.keys(POSITION).includes(this.options.position!)) {
-      this.position = prefrences.positions[this.options.position!]
+      this.options.position = prefrences.positions[this.options.position!]
     } else {
-      this.position = prefrences.positions.TOP_END;
+      this.options.position = prefrences.positions.TOP_END;
     }
   
-    this.id = v4();
-    this.createdAt = this.getHumanTime();
     this.item = document.createElement("div");
     this.spaceBetween = 5;
-    this.sound = new Audio()
+    this.sound = this.options.allowSound ? new Sound(this.options.soundFile ? this.options.soundFile : notificationSound, this.parentElement) : undefined;
     this.group = this.options.position!;
-
-    if (this.options.allowSound) {
-      this.makeSound();
-    }
-
-    if (this.options.datatime) {
-      this.createdAt = this.options.datatime;
-    } else {
-      this.createdAt = dayjs().toString();
-    }
-
   }
 
+  /**
+   * Display toast to user.
+   * 
+   * @returns {this}
+   */
   public show(): this {
-    const root = this.rootElement;
-    const toast = this.buildToast;
+    const root = this.parentElement;
+    const toast = this.build;
 
     root.insertBefore(toast, root.firstChild);
 
     // Play sound if it's allowed.
-    this.playSound();
-
-    this.orderize();
-    return this;
-  }
-
-  public clearQueue() {}
-
-  /**
-   *
-   * @returns {HTMLElement}
-   */
-  private get buildHeader(): HTMLElement {
-    const headerElement = document.createElement("div");
-    headerElement.classList.add("toast-header");
-
-    // Avatar element
-    if (this.options.avatar) {
-      headerElement.appendChild(this.buildAvatar);
+    if (this.sound) {
+      this.sound.instance.play()
     }
 
-    // Create title element.
-    const titleElement = document.createElement("strong");
-    titleElement.classList.add("me-auto");
-    titleElement.innerText = this.options.title;
-    headerElement.appendChild(titleElement);
+    // Order toasts.
+    this.orderize();
 
-    // time
-    const timeElement = document.createElement("small");
-    timeElement.innerText = this.getHumanTime();
 
-    headerElement.appendChild(timeElement);
-
-    // Close button
-    headerElement.appendChild(this.buildCloseButton);
-
-    // Return header element.
-    return headerElement;
+    return this;
   }
-
+  
   /**
-   *
+   * Event to close toast.
+   * 
+   * @return {void}
    */
-  private get buildBody(): HTMLElement {
-    const bodyElement = document.createElement("div");
-    bodyElement.classList.add("toast-body");
-    bodyElement.innerHTML = this.options.text;
-
-    return bodyElement;
+  public CloseEvent = (): void => {
+    this.removeElement(this.item);
   }
 
-  /**
-   *
-   * @return {HTMLElement}
-   */
-  private get buildContainer(): HTMLElement {
-    const containerElement = document.createElement("div");
-    containerElement.className = `position-fixed ${
-      this.position
-    } ${gclass("container")}`;
-    containerElement.style.zIndex = "2500";
-
-    return containerElement;
-  }
 
   /**
-   *
+   * Build toast element.
+   * 
    * @returns {HTMLElement}
    */
-  private get buildToast(): HTMLElement {
+  private get build(): HTMLElement {
+
     // Container Element
-    const container = this.buildContainer;
+    const container = ToastContainer(this);
 
     // Toast Element
     const toastElement = document.createElement("div");
     toastElement.classList.add("toast");
-    container.setAttribute("data-id", this.id);
-    container.setAttribute("data-created-at", this.createdAt);
+    container.setAttribute("data-id", this.options.id);
+    container.setAttribute("data-created-at", this.options.datetime!);
     container.setAttribute("data-group", this.group);
 
     // Toast Header (only if option hideHeader is set to false).
     if (!this.options.hideHeader!) {
-      toastElement.appendChild(this.buildHeader);
+      toastElement.appendChild(HeaderComponent(this));
     }
 
+  if (this.options.type) {
+    toastElement.classList.add(`bg-${this.options.type}`)
+  }
+
+
     // Toast Body
-    toastElement.appendChild(this.buildBody);
+    toastElement.appendChild(ToastBody(this));
 
     // Put toast into it's container.
     container.appendChild(toastElement);
@@ -174,33 +173,29 @@ class Bootstrap5Toast {
     // Show the toast by adding class (.show)
     container.classList.add("show");
 
+    if (this.options.duration > 0) {
+    setTimeout(() => {
+      this.removeElement(container)
+    }, this.options.duration)
+
+    }
     // Return toast instance.
     return container;
   }
 
   /**
    *
-   * @returns {HTMLElement}
+   * @returns {Element}
    */
-  private get buildAvatar(): HTMLElement {
-    const avatarElement = document.createElement("img");
-    avatarElement.classList.add("rounded", "me-2");
-    avatarElement.src = this.options.avatar!;
-    avatarElement.width = 20;
-    avatarElement.height = 20;
-
-    return avatarElement;
-  }
-
-  /**
-   *
-   * @returns {HTMLElement}
-   */
-  private get rootElement(): HTMLElement {
-    if (this.options.parent !== "body") {
-      const userRootElement = document.getElementById(this.options.parent!);
+  private get parentElement(): Element {
+    if (this.options.parent) {
+      const userRootElement = document.querySelector(this.options.parent!);
       if (!userRootElement) {
         throw "User root element not exists.";
+      }
+
+      if (Array.isArray(userRootElement)) {
+        return userRootElement[0];
       }
 
       return userRootElement;
@@ -210,83 +205,44 @@ class Bootstrap5Toast {
   }
 
   /**
-   *
-   */
-  private get buildCloseButton(): HTMLElement {
-    const closeBtnElement = document.createElement("button");
-    closeBtnElement.classList.add("btn-close");
-    closeBtnElement.setAttribute("type", "button");
-    closeBtnElement.setAttribute("area-label", "Close");
-
-    closeBtnElement.addEventListener("click", (event) => {
-      event.stopPropagation();
-      this.removeElement(this.item);
-
-      if (typeof this.options.onCloseCallBack === "function") {
-        this.options.onCloseCallBack();
-      }
-
-      this.orderize();
-    });
-
-    return closeBtnElement;
-  }
-
-  /**
-   *
-   * @returns {string}
-   */
-  private getHumanTime(): string {
-    return dayjs(this.createdAt).fromNow();
-  }
-
-  /**
    * Remove the element from dom after timeout finished.
    */
   private removeElement(toastElement: HTMLElement): void {
     // Hide the element.
     toastElement.classList.remove("show");
 
+      if (typeof this.options.onCloseCallBack === "function") {
+        this.options.onCloseCallBack(this);
+      }
+
     window.setTimeout(() => {
       toastElement.parentNode?.removeChild(toastElement);
     }, 400);
-  }
 
-  private makeSound(): void {
-    const sound = new Audio(notificationSound);
-    sound.id = "bootstrap5-toast-notification";
-    this.sound = sound;
+          this.orderize()
 
-    if (!this.rootElement.querySelector('#bootstrap5-toast-notification')) {
-      this.rootElement.appendChild(sound)
-    }
-  }
-
-  private playSound(): void {
-    if (this.options.allowSound) {
-      this.sound.play();
-    }
   }
 
   private orderize() {
-    // @ts-ignore
+    const { space } = this.options;
+    
     const topLeftOffsetSize = {
-      top: 5,
-      bottom: 5,
+      top: Number(space),
+      bottom: Number(space),
     };
 
-    // @ts-ignore
 
     const topRightOffsetSize = {
-      top: 5,
-      bottom: 5,
+      top: Number(space),
+      bottom: Number(space),
     };
-    // @ts-ignore
 
     const offsetSize = {
-      top: 5,
-      bottom: 5,
+      top: Number(space),
+      bottom: Number(space),
     };
+
+    console.log(space, offsetSize, topRightOffsetSize, topLeftOffsetSize)
     
     let selector = `.${gclass("container")}[data-group='${this.group}']`;
 
@@ -318,7 +274,7 @@ class Bootstrap5Toast {
           toast.style[classUsed] = offsetSize[classUsed] + "px"
           offsetSize[classUsed] += toastHeight + this.spaceBetween;
         } else {
-          if (hasClass(toast, "start")) {
+          if (hasClass(toast, `start-${this.options.space}`)) {
             toast.style[classUsed] = topLeftOffsetSize[classUsed] + "px"
             topLeftOffsetSize[classUsed] += toastHeight + this.spaceBetween;
           } else {

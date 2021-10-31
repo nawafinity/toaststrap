@@ -16,8 +16,8 @@ declare const _default: {
         TOP_CENTER: string;
         MIDDLE_LEFT: string;
         MIDDLE_RIGHT: string;
-        BOTTOM_LEFT: string;
-        BOTTOM_RIGHT: string;
+        BOTTOM_START: string;
+        BOTTOM_END: string;
     };
 };
 export default _default;

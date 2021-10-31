@@ -28,6 +28,14 @@ export default {
         // Bottom
         BOTTOM_START: gclass('bottom') + ' ' + gclass('start'),
         BOTTOM_END: gclass('bottom') + ' ' + gclass('end'),
+    },
+
+    types: {
+        DEFAULT: '',
+        PRIMARY: '',
+        SUCCESS: '',
+        WARNING: '',
+        DANGER: ''
     }
 }
 

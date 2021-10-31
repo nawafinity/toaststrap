@@ -19,5 +19,12 @@ declare const _default: {
         BOTTOM_START: string;
         BOTTOM_END: string;
     };
+    types: {
+        DEFAULT: string;
+        PRIMARY: string;
+        SUCCESS: string;
+        WARNING: string;
+        DANGER: string;
+    };
 };
 export default _default;
