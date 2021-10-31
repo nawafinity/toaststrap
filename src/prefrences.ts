@@ -31,11 +31,11 @@ export default {
     },
 
     types: {
-        DEFAULT: '',
-        PRIMARY: '',
-        SUCCESS: '',
-        WARNING: '',
-        DANGER: ''
+        DEFAULT: ['bg-default'],
+        PRIMARY: ['bg-primary', 'text-light'],
+        SUCCESS: ['bg-success', 'text-light'],
+        WARNING: ['bg-warning'],
+        DANGER: ['bg-danger', 'text-light']
     }
 }
 

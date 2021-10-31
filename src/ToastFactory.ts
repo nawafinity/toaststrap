@@ -157,7 +157,8 @@ class Bootstrap5Toast {
     }
 
   if (this.options.type) {
-    toastElement.classList.add(`bg-${this.options.type}`)
+    console.log(this.options.type.toUpperCase())
+    toastElement.classList.add(...prefrences.types[this.options.type.toUpperCase()])
   }
 
 

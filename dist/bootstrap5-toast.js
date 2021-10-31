@@ -153,6 +153,7 @@ var Bootstrap5Toast = /** @class */ (function () {
          * @returns {HTMLElement}
          */
         get: function () {
+            var _a;
             var _this = this;
             // Container Element
             var container = (0,_support_container__WEBPACK_IMPORTED_MODULE_7__.ToastContainer)(this);
@@ -167,7 +168,8 @@ var Bootstrap5Toast = /** @class */ (function () {
                 toastElement.appendChild((0,_support_header__WEBPACK_IMPORTED_MODULE_5__.HeaderComponent)(this));
             }
             if (this.options.type) {
-                toastElement.classList.add("bg-" + this.options.type);
+                console.log(this.options.type.toUpperCase());
+                (_a = toastElement.classList).add.apply(_a, _prefrences__WEBPACK_IMPORTED_MODULE_2__["default"].types[this.options.type.toUpperCase()]);
             }
             // Toast Body
             toastElement.appendChild((0,_support_body__WEBPACK_IMPORTED_MODULE_6__.ToastBody)(this));
@@ -350,11 +352,11 @@ var POSITION;
         BOTTOM_END: gclass('bottom') + ' ' + gclass('end'),
     },
     types: {
-        DEFAULT: '',
-        PRIMARY: '',
-        SUCCESS: '',
-        WARNING: '',
-        DANGER: ''
+        DEFAULT: ['bg-default'],
+        PRIMARY: ['bg-primary', 'text-light'],
+        SUCCESS: ['bg-success', 'text-light'],
+        WARNING: ['bg-warning'],
+        DANGER: ['bg-danger', 'text-light']
     }
 });
 

@@ -20,11 +20,11 @@ declare const _default: {
         BOTTOM_END: string;
     };
     types: {
-        DEFAULT: string;
-        PRIMARY: string;
-        SUCCESS: string;
-        WARNING: string;
-        DANGER: string;
+        DEFAULT: string[];
+        PRIMARY: string[];
+        SUCCESS: string[];
+        WARNING: string[];
+        DANGER: string[];
     };
 };
 export default _default;
