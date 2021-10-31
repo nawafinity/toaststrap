@@ -32,7 +32,7 @@ $spaces: 5, 10, 15, 20;
     }
 
     @each $space in $spaces {
-        &-start-#{space} {
+        &-start-#{$space} {
             left: $space + px;
 
             [dir=rtl] & {

@@ -15,3 +15,4 @@
 # Directories potentially created on remote AFP share
 node_modules
 .package.lock
+.idea

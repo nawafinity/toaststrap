@@ -1,74 +1,60 @@
 import "./assets/styles.scss";
 declare type OptionsType = {
+    id: string;
     title: string;
     text: string;
     datetime?: string;
-    type?: "info" | "success" | "warrning" | "danger";
+    type?: "default" | "info" | "success" | "warrning" | "danger";
     hideHeader?: boolean;
     position?: string;
     parent?: string;
     avatar?: string;
-    onCloseCallBack?: () => void;
+    space: number;
+    soundFile?: string;
     allowSound: boolean;
     duration: number;
+    onCloseCallBack?: (context: Bootstrap5Toast) => void;
 };
+/**
+ * JavaScript library for showing a bootstrap5 toast notification.
+ *
+ * @author Nawaf Khalifah
+ * @version 1.0.0
+ */
 declare class Bootstrap5Toast {
     options: OptionsType;
-    private id;
-    private createdAt;
     private item;
     private sound;
     private spaceBetween;
-    private position;
     private group;
-    private customParent;
     constructor(options?: OptionsType);
+    /**
+     * Display toast to user.
+     *
+     * @returns {this}
+     */
     show(): this;
-    clearQueue(): void;
     /**
+     * Event to close toast.
+     *
+     * @return {void}
+     */
+    CloseEvent: () => void;
+    /**
+     * Build toast element.
      *
      * @returns {HTMLElement}
      */
-    private get buildHeader();
-    /**
-     *
-     */
-    private get buildBody();
-    /**
-     *
-     * @return {HTMLElement}
-     */
-    private get buildContainer();
-    /**
-     *
-     * @returns {HTMLElement}
-     */
-    private get buildToast();
-    /**
-     *
-     * @returns {HTMLElement}
-     */
-    private get buildAvatar();
+    private get build();
     /**
      *
      * @returns {Element}
      */
-    private get rootElement();
-    /**
-     *
-     */
-    private get buildCloseButton();
-    /**
-     *
-     * @returns {string}
-     */
-    private getHumanTime;
+    private get parentElement();
     /**
      * Remove the element from dom after timeout finished.
      */
     private removeElement;
-    private makeSound;
-    private playSound;
     private orderize;
 }
 export { Bootstrap5Toast, OptionsType };

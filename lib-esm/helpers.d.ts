@@ -1,2 +1,3 @@
 declare const hasClass: (element: Element, className: string) => boolean;
-export { hasClass };
+declare const getHumanTime: (datetime: string) => string;
+export { hasClass, getHumanTime };

@@ -1,5 +1,9 @@
+import dayjs from "dayjs";
 var hasClass = function (element, className) {
     return element.classList.contains(className);
 };
-export { hasClass };
+var getHumanTime = function (datetime) {
+    return dayjs(datetime).fromNow();
+};
+export { hasClass, getHumanTime };
 //# sourceMappingURL=helpers.js.map

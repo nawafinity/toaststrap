@@ -24,10 +24,10 @@
 .bootstrap5-toast-bottom {
   bottom: -155px;
 }
-.bootstrap5-toast-start-space {
+.bootstrap5-toast-start-5 {
   left: 5px;
 }
-[dir=rtl] .bootstrap5-toast-start-space {
+[dir=rtl] .bootstrap5-toast-start-5 {
   left: unset;
   right: 5px;
 }
@@ -38,10 +38,10 @@
   right: unset;
   left: 5px;
 }
-.bootstrap5-toast-start-space {
+.bootstrap5-toast-start-10 {
   left: 10px;
 }
-[dir=rtl] .bootstrap5-toast-start-space {
+[dir=rtl] .bootstrap5-toast-start-10 {
   left: unset;
   right: 10px;
 }
@@ -52,10 +52,10 @@
   right: unset;
   left: 10px;
 }
-.bootstrap5-toast-start-space {
+.bootstrap5-toast-start-15 {
   left: 15px;
 }
-[dir=rtl] .bootstrap5-toast-start-space {
+[dir=rtl] .bootstrap5-toast-start-15 {
   left: unset;
   right: 15px;
 }
@@ -66,10 +66,10 @@
   right: unset;
   left: 15px;
 }
-.bootstrap5-toast-start-space {
+.bootstrap5-toast-start-20 {
   left: 20px;
 }
-[dir=rtl] .bootstrap5-toast-start-space {
+[dir=rtl] .bootstrap5-toast-start-20 {
   left: unset;
   right: 20px;
 }
