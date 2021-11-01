@@ -2,12 +2,13 @@ import dayjs from "dayjs"
 import { v4 } from "uuid"
 import relativeTime from "dayjs/plugin/relativeTime"
 import prefrences, { cprefix, gclass, POSITION } from "./prefrences"
-import { hasClass } from "./helpers"
+import { hasClass, toBoolean } from "./helpers"
 import { HeaderComponent } from "./support/header"
 import { ToastBody } from "./support/body"
 import { ToastContainer } from "./support/container"
 import Sound from "./support/sound"
 import { OptionsType } from "./types"
+import { ProgressComponent } from "./support/progress"
 
 dayjs.extend(relativeTime)
 
@@ -23,9 +24,14 @@ class ToastFactory {
   private readonly sound: Sound | undefined
   private readonly spaceBetween: number
   private readonly group: string
+  private timeout: NodeJS.Timeout;
+  public progressInterval: NodeJS.Timer;
+  public pauseProgressInterval: boolean;
+  public progressStartTime: number;
 
   constructor(options?: OptionsType) {
     this.options = {
+      progress: true,
       dismissible: true,
       duration: 3,
       pausable: true,
@@ -55,6 +61,11 @@ class ToastFactory {
     this.item = document.createElement("div")
     this.spaceBetween = 5
     this.sound = this.options.soundable && this.options.soundSource ? new Sound(this.options.soundSource, this.parentElement) : undefined
+    this.timeout = setTimeout(() => {}, 0);
+    this.progressInterval = setInterval(() => {}, 0)
+    this.pauseProgressInterval = false;
+    this.progressStartTime = 0;
+
   }
 
   /**
@@ -88,7 +99,7 @@ class ToastFactory {
    * @return {void}
    */
   public CloseEvent = (): void => {
-    this.removeElement(this.item)
+    this.destroy(this.item)
   }
 
 
@@ -108,6 +119,7 @@ class ToastFactory {
 
     container.setAttribute("data-id", this.options.id)
     container.setAttribute("data-created-at", this.options.datetime!)
+    container.setAttribute("data-type", this.options.type ? this.options.type.toLowerCase() : '')
     container.setAttribute("data-group", this.group)
 
     // Toast Header (only if option hideHeader is set to false).
@@ -117,16 +129,19 @@ class ToastFactory {
       toastElement.classList.add(...prefrences.types[this.options.type])
     }
 
-
-
     // Toast Body
     toastElement.appendChild(ToastBody(this))
+
+    if (toBoolean(this.options.progress)) {
+      // Toast Progress
+      toastElement.appendChild(ProgressComponent(this));
+    }
 
 
     // Put toast into it's container.
     container.appendChild(toastElement)
 
-    // Watch toast height changed, and orgnize if happend.
+    // Watch toast height changed, and re-order if happen.
     new ResizeObserver(() => {
       this.orderize();
     }).observe(container);
@@ -138,9 +153,25 @@ class ToastFactory {
     container.classList.add("show")
 
     if (this.options.duration > 0) {
-      setTimeout(() => {
-        this.removeElement(container)
+      this.timeout = setTimeout(() => {
+        this.destroy(container)
       }, this.options.duration)
+
+      if (this.options.pausable) {
+        this.item.addEventListener("mouseover", () => {
+          clearTimeout(this.timeout);
+          this.pauseProgressInterval = true;
+        })
+
+        this.item.addEventListener("mouseleave", () => {
+          this.pauseProgressInterval = false;
+          this.progressStartTime = new Date().getTime();
+
+          this.timeout = setTimeout(() => {
+            this.destroy(this.item);
+          }, this.options.duration)
+        })
+      }
 
     }
     // Return toast instance.
@@ -171,7 +202,7 @@ class ToastFactory {
   /**
    * Remove the element from dom after timeout finished.
    */
-  private removeElement(toastElement: HTMLElement): void {
+  private destroy(toastElement: HTMLElement): void {
     // Hide the element.
     toastElement.classList.remove("show")
 
@@ -219,7 +250,7 @@ class ToastFactory {
 
     if (toasts.length > 0) {
       toasts.forEach((toast) => {
-        console.log(toast.clientHeight)
+
         if (hasClass(toast, gclass("top"))) {
           classUsed = gclass("top")
         } else {

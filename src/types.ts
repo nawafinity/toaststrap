@@ -8,10 +8,13 @@ export declare type OptionsType = {
   text: string;
 
   //
-  dismissible: boolean,
+  dismissible: boolean;
 
   //
-  pausable: boolean,
+  pausable: boolean;
+
+  //
+  progress: boolean;
 
   // Toast datetime (Shows in header).
   datetime?: string;

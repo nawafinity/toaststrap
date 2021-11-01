@@ -52,6 +52,7 @@ var toast = Bootstrap5Toast.initialize({
   noHeader: ${formValues.noHeader ? true : false},
   dismissible: ${formValues.dismissible === "true" ? true : false},
   pauseable: ${formValues.pauseable === "true" ? true : false},
+  progress: ${formValues.progress},
   
   // Parent node
   parent: '${formValues.parent}',
@@ -112,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })">Give me hug</button>
           </div>
         `,
-        duration: 0,
+        duration: 5,
         soundable: true,
         soundSource: 'https://assets.mixkit.co/sfx/download/mixkit-bell-notification-933.wav'
       })

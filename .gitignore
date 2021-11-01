@@ -8,6 +8,7 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+.idea
 
 # Thumbnails
 ._*
@@ -15,7 +16,7 @@
 # Directories potentially created on remote AFP share
 node_modules
 .package.lock
-.idea
+.yarn.lock
 
 # example ignores
 react-example/node_modules

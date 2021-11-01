@@ -7,6 +7,15 @@
 $prefix: "bootstrap5-toast";
 
 $spaces: 5, 10, 15, 20;
+$bgs: (
+        primary: --bs-primary-rgb,
+        info: --bs-info-rgb,
+        success: --bs-success-rgb,
+        warning: --bs-warning-rgb,
+        danger: --bs-danger-rgb,
+        dark: --bs-dark-rgb,
+        sweet: #f4a3c4
+);
 
 .#{$prefix} {
     &-container {
@@ -75,6 +84,28 @@ $spaces: 5, 10, 15, 20;
     }
 }
 
+.toast-footer {
+    height: 3px;
+    overflow: hidden;
+
+    &-inner {
+        width: 0;
+        height: inherit;
+        background-color: rgb(var(--bs-secondary-rgb));
+
+        @each $key, $value in $bgs {
+            [data-type='#{$key}'] & {
+                @if (index($value, --bs-)) {
+                    background-color: rgb(var($value)) !important;
+                } @else {
+                    background-color: $value !important;
+                }
+            }
+        }
+
+    }
+
+}
 .bg-sweet {
     background-color: #f4a3c4;
 }

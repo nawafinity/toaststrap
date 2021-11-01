@@ -65,6 +65,7 @@
                                             <option value="WARNING" class="bg-warning text-dark">Warning</option>
                                             <option value="DANGER" class="bg-danger text-light">Danger</option>
                                             <option value="DARK" class="bg-dark text-light">Dark</option>
+                                            <option value="SWEET" class="bg-dark text-light">Sweet</option>
                                         </select>
                                     </div>
 
@@ -150,6 +151,13 @@
                                         <input type='hidden' value='false' name='pauseable'>
                                         <input type="checkbox" name="pauseable" id="pauseable"
                                             class="form-check-input" onclick="this.value = !!this.value">
+                                    </div>
+
+                                    <div class="form-check mt-3">
+                                        <label for="progress" class="form-check-label">Progress?</label>
+                                        <input type="hidden" value="false" name="progress">
+                                        <input type="checkbox" name="progress" id="progress"
+                                            class="form-check-input" onclick="this.value ? this.value = true : this.value = false" checked value="true">
                                     </div>
 
                                     <div class="form-check mt-3">

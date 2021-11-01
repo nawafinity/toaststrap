@@ -4,6 +4,7 @@ export declare type OptionsType = {
     text: string;
     dismissible: boolean;
     pausable: boolean;
+    progress: boolean;
     datetime?: string;
     type?: any;
     noHeader?: boolean;
