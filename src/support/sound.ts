@@ -3,7 +3,7 @@ import { cprefix } from "../prefrences";
 class Sound {
     private element: HTMLAudioElement;
     private selector: string;
-    private parent: Element;;
+    private parent: Element;
 
   constructor(audioFile: string, parentElement: Element) {
       this.selector = `${cprefix}-notification`

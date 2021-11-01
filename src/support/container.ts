@@ -1,5 +1,5 @@
 import { gclass } from "../prefrences"
-import { Bootstrap5Toast } from "../ToastFactory"
+import Bootstrap5Toast  from "../ToastFactory"
 
 export const ToastContainer = (context: Bootstrap5Toast) => {
   const { options } = context

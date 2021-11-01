@@ -1,4 +1,4 @@
-import { Bootstrap5Toast } from "../ToastFactory"
+import Bootstrap5Toast from "../ToastFactory"
 
 export const ToastBody = (context: Bootstrap5Toast) => {
   const { options } = context

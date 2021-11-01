@@ -1,5 +1,7 @@
-import { getHumanTime } from "../helpers"
-import { Bootstrap5Toast, OptionsType } from "../ToastFactory"
+import { getHumanTime, toBoolean } from "../helpers"
+import Bootstrap5Toast from "../ToastFactory"
+import prefrences from "../prefrences"
+import { OptionsType } from "../types"
 
 const AvatarComponent = (options: OptionsType) => {
   const avatarElement = document.createElement("img")
@@ -35,6 +37,11 @@ export const HeaderComponent = (context: Bootstrap5Toast): Element => {
     headerElement.appendChild(AvatarComponent(options))
   }
 
+  if (options.type) {
+    headerElement.classList.add(...prefrences.types[options.type])
+  }
+
+
   // Create title element.
   const titleElement = document.createElement("strong")
   titleElement.classList.add("me-auto")
@@ -50,7 +57,10 @@ export const HeaderComponent = (context: Bootstrap5Toast): Element => {
   }
 
   // Close button
-  headerElement.appendChild(CloseButtonComponent(context.CloseEvent))
+  console.log(options.dismissible)
+  if (toBoolean(options.dismissible)) {
+    headerElement.appendChild(CloseButtonComponent(context.CloseEvent))
+  }
 
   // Return header element.
   return headerElement

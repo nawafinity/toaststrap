@@ -16,3 +16,18 @@
 node_modules
 .package.lock
 .idea
+
+# example ignores
+react-example/node_modules
+react-example/.pnp
+react-example/.pnp.js
+react-example/coverage
+react-example/build
+react-example/.DS_Store
+react-example/.env.local
+react-example/.env.development.local
+react-example/.env.test.local
+react-example/.env.production.local
+react-example/npm-debug.log*
+react-example/yarn-debug.log*
+react-example/yarn-error.log*

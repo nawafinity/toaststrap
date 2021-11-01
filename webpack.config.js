@@ -14,7 +14,7 @@ const config = {
     }),
   ],
   context: __dirname,
-  entry: "./src/index.ts",
+  entry: "./src/browser.ts",
 
   output: {
     filename: "bootstrap5-toast.js",

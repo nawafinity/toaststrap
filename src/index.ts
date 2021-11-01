@@ -1,13 +1,10 @@
-import { POSITION } from "./prefrences"
-import { OptionsType, Bootstrap5Toast } from "./ToastFactory"
+import ToastFactory from "./ToastFactory"
+import { OptionsType } from "./types"
+import { POSITION, TYPES } from "./prefrences"
 
-declare global {
-    interface Window { bs5toast: (options: OptionsType) => Bootstrap5Toast; }
+export const ToastType = TYPES;
+export const ToastPosition = POSITION;
+
+export default function(options: OptionsType): ToastFactory {
+  return new ToastFactory(options);
 }
-
-const initialize = window.bs5toast = (options: OptionsType): Bootstrap5Toast => {
-  return new Bootstrap5Toast(options)
-}
-
-
-export { initialize, POSITION }

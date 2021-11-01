@@ -1,11 +1,16 @@
 {
-  "name": "bootstrap5-toaster",
+  "name": "bootstrap5-toast",
   "version": "1.0.0-beta",
-  "description": "A javaScript library for showing a Bootstrap 5 toast notifications.",
-  "main": "./lib/index.js",
+  "description": "A javaScript library for simple, lightweight toast popups. Uses Bootstrap 5 styles.",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
   "scripts": {
-    "dev": "tsc && tsc -m es6 --outDir lib-esm && webpack --watch --mode development",
-    "build": "tsc && tsc -m es6 --outDir lib-esm && webpack --mode production",
+    "dev": "webpack --watch --mode development",
+    "production": "npm run build:esm && npm run build:cjs && npm run build:bundle",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module commonjs --outDir ./lib/cjs",
+    "build:bundle": "webpack --mode production",
+    "build:bundle-dev": "webpack --mode development",
     "browserify": "browserify -e ./lib/index.js > -o ./dist/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,6 +29,10 @@
   ],
   "author": "Nawaf Khalifah",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nawafscript/bootstrap5-toast.git"
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.0.6",
@@ -49,5 +58,8 @@
     "dayjs": "^1.10.7",
     "moment": "^2.29.1",
     "uuid": "^8.3.2"
-  }
+  },
+  "files": [
+    "/lib"
+  ]
 }
