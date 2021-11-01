@@ -15,8 +15,10 @@ declare global {
 window.bs5toast_type = TYPES;
 
 const initialize = window.bs5toast = (options: OptionsType): ToastFactory => {
+  if (!options.soundSource || options.soundSource.length === 0) {
+    options.soundSource = notificationSound;
+  }
   return new ToastFactory({
-    soundSource: notificationSound,
     ...options
   })
 }

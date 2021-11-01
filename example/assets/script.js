@@ -46,7 +46,7 @@ var toast = Bootstrap5Toast.initialize({
   
   // Enable sound
   soundable: ${formValues.soundable ? true : false},
-  soundSource: '${formValues.soundSource || ''}',
+  soundSource: '${formValues.soundSource || undefined}',
   
   // Customization
   noHeader: ${formValues.noHeader ? true : false},

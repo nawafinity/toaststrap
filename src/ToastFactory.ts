@@ -60,11 +60,17 @@ class ToastFactory {
 
     this.item = document.createElement("div")
     this.spaceBetween = 5
-    this.sound = this.options.soundable && this.options.soundSource ? new Sound(this.options.soundSource, this.parentElement) : undefined
+
+    if (this.options.soundable && this.options.soundSource && this.options.soundSource.length > 0) {
+      this.sound = new Sound(this.options.soundSource, this.parentElement);
+    }
+
     this.timeout = setTimeout(() => {}, 0);
     this.progressInterval = setInterval(() => {}, 0)
     this.pauseProgressInterval = false;
     this.progressStartTime = 0;
+
+    console.log(this.options)
 
   }
 
