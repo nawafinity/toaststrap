@@ -1,0 +1,12 @@
+/spec
+/src
+/docs
+/example
+/react-example
+.coveralls.yml
+.travis.yml
+.gitignore
+.index.html
+README.md
+.idea
+.vscode
