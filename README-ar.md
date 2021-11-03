@@ -7,7 +7,7 @@
 
 <div align="center">
 
-**Toaststrap** is a javascript library for simple, lightweight toast popups. It uses bootstrap 5 styles.
+**Toastsrap** مكتبة جافا سكربت، بسيطة، خفيفة، لعمل تنبيهات من نوع Toast. تستخدم تخطيطات Bootstrap5.
 
 
 </div>
@@ -23,7 +23,7 @@
 
 ## نظرة عامة
 
-I created this library for everyone who use Bootstrap5 and want to show some beautiful notifications for his users.
+صنعت هذه المكتبة لكل شخص يستخدم Bootstrap 5، ويود أن يظهر تنبيهات جميلة للمستخدمين.
 
 ## مميزات
 - مكتوبة بلغة JavaScript دون إستخدام jQuery.
@@ -42,6 +42,9 @@ I created this library for everyone who use Bootstrap5 and want to show some bea
 2. تأكد من أنك تستخدم أخر اصدار من مكتبة Bootstrap5.
 
 ### مثال
+
+<div dir="ltr">
+
 ```html
 <!DOCTYPE html>
 
@@ -69,12 +72,22 @@ I created this library for everyone who use Bootstrap5 and want to show some bea
 </html>
 ```
 
+</div>
+
 ## الإستخدام مع React
+
+<div dir="ltr">
+
 ```shell
 npm install toaststrap
 ```
 
+</div>
+
 ### مثال
+
+<div dir="ltr">
+
 ```javascript
 import Toast, {ToastType, ToastPosition} from 'toastsrap';
 
@@ -96,20 +109,41 @@ const MyToastComponent = () => {
 }
 ```
 
+</div>
+
 ## إعداد بيئة التطوير
 
 1. نزل المكتبة من خلال
+
+<div dir="ltr">
+
 ```shell
 git clone https://github.com/nawafscript/toastsrap.git
 ```
+
+</div>
+
 2. تنصيب المكتبات الفرعية
+
+<div dir="ltr">
+
 ```shell
 npm install
 ```
+
+</div>
+
+
 3. تشغيل خادم التطوير
+
+<div dir="ltr">
+
 ```shell
 npm run dev
 ```
+
+</div>
+
 
 
 ## ادعمنا
