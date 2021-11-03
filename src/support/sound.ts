@@ -1,33 +1,33 @@
-import { cprefix } from "../prefrences";
+import { cprefix } from "../prefrences"
 
 class Sound {
-    private element: HTMLAudioElement;
-    private selector: string;
-    private parent: Element;
+  private element: HTMLAudioElement
+  private selector: string
+  private parent: Element
 
   constructor(audioFile: string, parentElement: Element) {
-      this.selector = `${cprefix}-notification`
-      this.element = new Audio(audioFile);
-      this.parent = parentElement;
+    this.selector = `${cprefix}-notification`
+    this.element = new Audio(audioFile)
+    this.parent = parentElement
 
 
-      this.make();
+    this.make()
 
-      return this;
+    return this
   }
 
   private make() {
-    this.element.id = this.selector;
+    this.element.id = this.selector
 
-    if (!this.parent.querySelector('#' + this.selector)) {
+    if (!this.parent.querySelector("#" + this.selector)) {
       this.parent.appendChild(this.element)
     }
 
   }
 
   public get instance() {
-      return this.element;
+    return this.element
   }
 }
 
-export default Sound;
+export default Sound

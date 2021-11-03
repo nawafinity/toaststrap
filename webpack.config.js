@@ -10,15 +10,15 @@ const PATHS = {
 const config = {
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "bootstrap5-toast.css",
+      filename: "toastsrap.css",
     }),
   ],
   context: __dirname,
   entry: "./src/browser.ts",
 
   output: {
-    filename: "bootstrap5-toast.js",
-    library: "Bootstrap5Toast",
+    filename: "toastsrap.js",
+    library: "Toastsrap",
   },
 
   module: {

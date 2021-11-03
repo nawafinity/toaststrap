@@ -1,1 +1,1 @@
-declare module '*.wav';
+declare module "*.wav";

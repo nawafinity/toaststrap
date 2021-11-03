@@ -5,21 +5,23 @@ import notificationSound from "./assets/sound.wav"
 import "./assets/styles.scss"
 
 declare global {
-    interface Window {
-      bs5toast: (options: OptionsType) => ToastFactory;
-      bs5toast_type: any
-    }
+  interface Window {
+    toastsrap: (options: OptionsType) => ToastFactory;
+    toastsrap_type: any;
+    toastsrap_position: any;
+  }
 }
 
 // Types
-window.bs5toast_type = TYPES;
+window.toastsrap_type = TYPES
+window.toastsrap_position = POSITION
 
-const initialize = window.bs5toast = (options: OptionsType): ToastFactory => {
+const initialize = window.toastsrap = (options: OptionsType): ToastFactory => {
   if (!options.soundSource || options.soundSource.length === 0) {
-    options.soundSource = notificationSound;
+    options.soundSource = notificationSound
   }
   return new ToastFactory({
-    ...options
+    ...options,
   })
 }
 

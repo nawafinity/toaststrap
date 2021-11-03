@@ -1,10 +1,10 @@
 /*!
- * Bootstrap5 Toast v1.0.0
+ * Toastsrap v1.0.0
  * 
- * Copyright 2021 nawafinity.
+ * Copyright 2021 Nawaf Khalifah.
  *
 */
-$prefix: "bootstrap5-toast";
+$prefix: "toastsrap";
 
 $spaces: 5, 10, 15, 20;
 $bgs: (
@@ -18,94 +18,95 @@ $bgs: (
 );
 
 .#{$prefix} {
-    &-container {
-        display: none;
-        transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-        cursor: pointer;
+  &-container {
+    display: none;
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    cursor: pointer;
 
-        &:is(.show) {
-            display: block;
+    &:is(.show) {
+      display: block;
 
-            .toast {
-                display: block;
-                opacity: 1;
-            }
-        }
-
-        & .toast > .toast-header:is(.text-light) {
-            .btn-close {
-                background: transparent url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/></svg>")  center/1em auto no-repeat;
-                color: #ffffff;
-            }
-        }
+      .toast {
+        display: block;
+        opacity: 1;
+      }
     }
 
-    &-top {
-        top: -155px;
+    & .toast > .toast-header:is(.text-light) {
+      .btn-close {
+        background: transparent url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/></svg>") center/1em auto no-repeat;
+        color: #ffffff;
+      }
+    }
+  }
+
+  &-top {
+    top: -155px;
+  }
+
+  &-bottom {
+    bottom: -155px;
+  }
+
+  @each $space in $spaces {
+    &-start-#{$space} {
+      left: $space + px;
+
+      [dir=rtl] & {
+        left: unset;
+        right: $space + px;
+      }
     }
 
-    &-bottom {
-        bottom: -155px;
+    &-end-#{$space} {
+      right: $space + px;
+
+      [dir=rtl] & {
+        right: unset;
+        left: $space + px;
+      }
     }
+  }
 
-    @each $space in $spaces {
-        &-start-#{$space} {
-            left: $space + px;
+  @media only screen and (max-width: 360px) {
 
-            [dir=rtl] & {
-                left: unset;
-                right: $space + px;
-            }
-        }
+    &-start,
+    &-end {
+      margin-left: 0;
+      margin-right: 0;
+      left: 0;
+      right: 0;
 
-        &-end-#{$space} {
-            right: $space + px;
-
-            [dir=rtl] & {
-                right: unset;
-                left: $space + px;
-            }
-        }
+      .toast {
+        margin: auto;
+      }
     }
-
-    @media only screen and (max-width: 360px) {
-
-        &-start,
-        &-end {
-            margin-left: 0;
-            margin-right: 0;
-            left: 0;
-            right: 0;
-
-            .toast {
-                margin: auto;
-            }
-        }
-    }
+  }
 }
 
 .toast-footer {
-    height: 3px;
-    overflow: hidden;
+  height: 3px;
+  overflow: hidden;
 
-    &-inner {
-        width: 0;
-        height: inherit;
-        background-color: rgb(var(--bs-secondary-rgb));
+  &-inner {
+    width: 0;
+    height: inherit;
+    background-color: rgb(var(--bs-secondary-rgb));
 
-        @each $key, $value in $bgs {
-            [data-type='#{$key}'] & {
-                @if (index($value, --bs-)) {
-                    background-color: rgb(var($value)) !important;
-                } @else {
-                    background-color: $value !important;
-                }
-            }
+    @each $key, $value in $bgs {
+      [data-type='#{$key}'] & {
+        @if (type-of($value) != color) {
+          background-color: rgb(var($value)) !important;
+        } @else {
+          background-color: $value !important;
         }
-
+      }
     }
 
+  }
+
 }
+
 .bg-sweet {
-    background-color: #f4a3c4;
+  background-color: #f4a3c4;
 }

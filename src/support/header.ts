@@ -1,5 +1,5 @@
 import { getHumanTime, toBoolean } from "../helpers"
-import Bootstrap5Toast from "../ToastFactory"
+import Toastsrap from "../ToastFactory"
 import prefrences from "../prefrences"
 import { OptionsType } from "../types"
 
@@ -27,7 +27,7 @@ const CloseButtonComponent = (onCloseEvent: () => void) => {
   return closeBtnElement
 }
 
-export const HeaderComponent = (context: Bootstrap5Toast): Element => {
+export const HeaderComponent = (context: Toastsrap): Element => {
   const { options } = context
   const headerElement = document.createElement("div")
   headerElement.classList.add("toast-header")
@@ -57,7 +57,6 @@ export const HeaderComponent = (context: Bootstrap5Toast): Element => {
   }
 
   // Close button
-  console.log(options.dismissible)
   if (toBoolean(options.dismissible)) {
     headerElement.appendChild(CloseButtonComponent(context.CloseEvent))
   }

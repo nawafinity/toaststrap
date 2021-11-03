@@ -1,6 +1,6 @@
 const PushNotification = (options = {}) => {
-  if (Bootstrap5Toast) {
-    var toaster = Bootstrap5Toast.initialize({
+  if (Toastsrap) {
+    var toaster = Toastsrap.initialize({
       ...options,
     })
 
@@ -37,7 +37,7 @@ const drawCode = (target) => {
     var regex = /<br\s*[\/]?>/gi
 
     let code = `// Result
-var toast = Bootstrap5Toast.initialize({
+var toast = Toastsrap.initialize({
   title: '${formValues.title}',
   text: '${formValues.text}',
   type: window.bs5toast_type.${formValues.type},
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
   PushNotification({
     ...getFormData(form),
     title: 'Heeelp!',
-    text: "I'm stuck here T-T, click on X button to close me!",
+    text: "I'm stuck here T-T, press the X button to close me!",
     duration: 0,
     onCloseCallBack: (() => {
       PushNotification({
@@ -104,12 +104,12 @@ document.addEventListener("DOMContentLoaded", () => {
         title: 'Arigatou Gozaimasu',
         text: `
           <div class="text-center">
-            <span class="d-block">You are a life saver <3</span>
+            <span class="d-block">You are a lifesaver 💕</span>
             <img class="d-inline-block" src="assets/pack.gif" width="120"/>
             <button class="btn btn-outline-info btn-sm mt-3 d-block m-auto" onclick="PushNotification({
-              title: 'Huuuuuuuuuuuuuuuuug<3',
-              text: '<3',
+              text: '🤗',
               noHeader: true,
+              type: bs5toast_type.SWEET
             })">Give me hug</button>
           </div>
         `,

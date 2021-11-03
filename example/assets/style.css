@@ -4,6 +4,7 @@ body {
 
 .examples {
     position: relative;
+    border: 4px solid #007aff45;
 }
 
 .example-box {
@@ -17,4 +18,10 @@ body {
 
 .examples-props>h3 {
     font-size: 1.25rem;
+}
+
+@media only screen and (max-width: 360px) {
+    .example-box {
+        width: 90%;
+    }
 }

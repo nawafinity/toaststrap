@@ -1,18 +1,17 @@
 {
-  "name": "bootstrap5-toast",
+  "name": "toaststrap",
   "version": "1.0.0-beta",
   "description": "A javaScript library for simple, lightweight toast popups. Uses Bootstrap 5 styles.",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
+  "private": false,
   "scripts": {
     "dev": "webpack --watch --mode development",
     "production": "npm run build:esm && npm run build:cjs && npm run build:bundle",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir ./lib/cjs",
     "build:bundle": "webpack --mode production",
-    "build:bundle-dev": "webpack --mode development",
-    "browserify": "browserify -e ./lib/index.js > -o ./dist/bundle.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:bundle-dev": "webpack --mode development"
   },
   "keywords": [
     "bootstrap",
@@ -25,13 +24,19 @@
     "bootstrap",
     "bootstrap",
     "5",
-    "bootstrap5"
+    "bootstrap5",
+    "toaststrap"
   ],
   "author": "Nawaf Khalifah",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nawafscript/bootstrap5-toast.git"
+  },
+  "homepage": "https://github.com/nawafscript/toaststrap",
+  "bugs": {
+    "url": "https://github.com/nawafscript/toaststrap/issues",
+    "email": "nawafinity@gmail.com"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",

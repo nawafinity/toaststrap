@@ -1,2 +1,2 @@
-import Bootstrap5Toast from "../ToastFactory";
-export declare const ToastContainer: (context: Bootstrap5Toast) => HTMLDivElement;
+import Toastsrap from "../ToastFactory";
+export declare const ToastContainer: (context: Toastsrap) => HTMLDivElement;

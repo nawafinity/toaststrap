@@ -1,9 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
-import Toast, {ToastType, ToastPosition} from 'bootstrap5-toast';
+import Toast, {ToastType, ToastPosition} from 'toastsrap';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap5-toast/dist/bootstrap5-toast.css'
+import 'toastsrap/dist/toastsrap.css'
+
 function App() {
 
   const handleClick = (position) => {

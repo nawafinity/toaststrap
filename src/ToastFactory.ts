@@ -24,10 +24,10 @@ class ToastFactory {
   private readonly sound: Sound | undefined
   private readonly spaceBetween: number
   private readonly group: string
-  private timeout: NodeJS.Timeout;
-  public progressInterval: NodeJS.Timer;
-  public pauseProgressInterval: boolean;
-  public progressStartTime: number;
+  private timeout: NodeJS.Timeout
+  public progressInterval: NodeJS.Timer
+  public pauseProgressInterval: boolean
+  public progressStartTime: number
 
   constructor(options?: OptionsType) {
     this.options = {
@@ -42,7 +42,7 @@ class ToastFactory {
       position: POSITION.TOP_END,
 
       // Override defaults.
-      ...options
+      ...options,
     }
 
     if (this.options.duration > 0) {
@@ -62,15 +62,15 @@ class ToastFactory {
     this.spaceBetween = 5
 
     if (this.options.soundable && this.options.soundSource && this.options.soundSource.length > 0) {
-      this.sound = new Sound(this.options.soundSource, this.parentElement);
+      this.sound = new Sound(this.options.soundSource, this.parentElement)
     }
 
-    this.timeout = setTimeout(() => {}, 0);
-    this.progressInterval = setInterval(() => {}, 0)
-    this.pauseProgressInterval = false;
-    this.progressStartTime = 0;
-
-    console.log(this.options)
+    this.timeout = setTimeout(() => {
+    }, 0)
+    this.progressInterval = setInterval(() => {
+    }, 0)
+    this.pauseProgressInterval = false
+    this.progressStartTime = 0
 
   }
 
@@ -125,7 +125,7 @@ class ToastFactory {
 
     container.setAttribute("data-id", this.options.id)
     container.setAttribute("data-created-at", this.options.datetime!)
-    container.setAttribute("data-type", this.options.type ? this.options.type.toLowerCase() : '')
+    container.setAttribute("data-type", this.options.type ? this.options.type.toLowerCase() : "")
     container.setAttribute("data-group", this.group)
 
     // Toast Header (only if option hideHeader is set to false).
@@ -140,7 +140,7 @@ class ToastFactory {
 
     if (toBoolean(this.options.progress)) {
       // Toast Progress
-      toastElement.appendChild(ProgressComponent(this));
+      toastElement.appendChild(ProgressComponent(this))
     }
 
 
@@ -149,8 +149,8 @@ class ToastFactory {
 
     // Watch toast height changed, and re-order if happen.
     new ResizeObserver(() => {
-      this.orderize();
-    }).observe(container);
+      this.orderize()
+    }).observe(container)
 
     // Toast instance.
     this.item = container
@@ -163,18 +163,18 @@ class ToastFactory {
         this.destroy(container)
       }, this.options.duration)
 
-      if (this.options.pausable) {
+      if (toBoolean(this.options.pausable)) {
         this.item.addEventListener("mouseover", () => {
-          clearTimeout(this.timeout);
-          this.pauseProgressInterval = true;
+          clearTimeout(this.timeout)
+          this.pauseProgressInterval = true
         })
 
         this.item.addEventListener("mouseleave", () => {
-          this.pauseProgressInterval = false;
-          this.progressStartTime = new Date().getTime();
+          this.pauseProgressInterval = false
+          this.progressStartTime = new Date().getTime()
 
           this.timeout = setTimeout(() => {
-            this.destroy(this.item);
+            this.destroy(this.item)
           }, this.options.duration)
         })
       }
@@ -288,4 +288,4 @@ class ToastFactory {
   }
 }
 
-export default ToastFactory;
+export default ToastFactory

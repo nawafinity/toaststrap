@@ -1,7 +1,7 @@
 import { gclass } from "../prefrences"
-import Bootstrap5Toast  from "../ToastFactory"
+import Toastsrap from "../ToastFactory"
 
-export const ToastContainer = (context: Bootstrap5Toast) => {
+export const ToastContainer = (context: Toastsrap) => {
   const { options } = context
   const containerElement = document.createElement("div")
   containerElement.className = `${
