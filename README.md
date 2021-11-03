@@ -113,7 +113,7 @@ npm run dev
 
 ## Be a sponsor
 <a href="https://ko-fi.com/nawafinity" target="_blank">
-    <img src="docs/sponsor.png?_ijt=b2gb70vvbamt2ba0lmnnos9vlm" />
+    <img src="docs/sponsor.png" />
 </a>
 
 
