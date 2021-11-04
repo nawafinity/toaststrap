@@ -6,12 +6,12 @@
   "module": "./lib/esm/index.js",
   "private": false,
   "scripts": {
-    "dev": "webpack --watch --mode development",
-    "production": "npm run build:esm && npm run build:cjs && npm run build:bundle",
+    "dev": "npm run build:bundle-dev",
+    "prod": "npm run build:esm && npm run build:cjs && npm run build:bundle",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir ./lib/cjs",
     "build:bundle": "webpack --mode production",
-    "build:bundle-dev": "webpack --mode development"
+    "build:bundle-dev": "webpack --watch --mode development"
   },
   "keywords": [
     "bootstrap",
