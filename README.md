@@ -38,6 +38,9 @@ I created this library for everyone who use Bootstrap5 and want to show some bea
 
 Check the [Documentation](https://nawafscript.github.io/toaststrap/) to get you started!
 
+## Demo
+
+Have fun with Toastsrap's [Initializer](https://nawafscript.github.io/toaststrap/Initializer/index.html)!
 
 ## Contribute
 Show your ❤️ and support by giving a ⭐. Any suggestions are welcome!
