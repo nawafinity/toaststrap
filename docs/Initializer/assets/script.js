@@ -1,6 +1,6 @@
 const PushNotification = (options = {}) => {
-  if (Toastsrap) {
-    var toaster = Toastsrap.initialize({
+  if (Toaststrap) {
+    var toaster = Toaststrap.initialize({
       ...options,
     })
 
@@ -37,11 +37,11 @@ const drawCode = (target) => {
     var regex = /<br\s*[\/]?>/gi
 
     let code = `// Result
-var toast = Toastsrap.initialize({
+var toast = Toaststrap.initialize({
   title: '${formValues.title}',
   text: '${formValues.text}',
-  type: window.bs5toast_type.${formValues.type},
-  position: '${formValues.position}',
+  type: window.toaststrap_type.${formValues.type},
+  position: window.toaststrap_position.${formValues.position},
   avatar: '${formValues.avatar}', 
   
   // Enable sound
@@ -89,7 +89,9 @@ const events = () => {
   })
 }
 document.addEventListener("DOMContentLoaded", () => {
-  // events
+  // Localization
+  console.log(window.i18n)
+
 
   // Code Mirror
   const form = document.querySelector("form")
@@ -100,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
     duration: 0,
     onCloseCallBack: (() => {
       PushNotification({
-        type: bs5toast_type.SWEET,
+        type: toaststrap_type.SWEET,
         title: 'Arigatou Gozaimasu',
         text: `
           <div class="text-center">
@@ -109,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <button class="btn btn-outline-info btn-sm mt-3 d-block m-auto" onclick="PushNotification({
               text: '🤗',
               noHeader: true,
-              type: bs5toast_type.SWEET
+              type: toaststrap_type.SWEET
             })">Give me hug</button>
           </div>
         `,

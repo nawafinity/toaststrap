@@ -4,11 +4,11 @@
   <img width="200" src="docs/logo.png">
 </p>
 
-<h1 align="center">Toastsrap</h1>
+<h1 align="center">Toaststrap</h1>
 
 <div align="center">
 
-**Toastsrap** مكتبة JavaScript، بسيطة، خفيفة، لعمل تنبيهات من نوع Toast. تستخدم تخطيطات Bootstrap 5.
+**Toaststrap** مكتبة JavaScript، بسيطة، خفيفة، لعمل تنبيهات من نوع Toast. تستخدم تخطيطات Bootstrap 5.
 
 
 </div>

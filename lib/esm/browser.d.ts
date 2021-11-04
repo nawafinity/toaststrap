@@ -4,9 +4,9 @@ import { OptionsType } from "./types";
 import "./assets/styles.scss";
 declare global {
     interface Window {
-        toastsrap: (options: OptionsType) => ToastFactory;
-        toastsrap_type: any;
-        toastsrap_position: any;
+        toaststrap: (options: OptionsType) => ToastFactory;
+        toaststrap_type: any;
+        toaststrap_position: any;
     }
 }
 declare const initialize: (options: OptionsType) => ToastFactory;

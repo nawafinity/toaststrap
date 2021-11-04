@@ -1,4 +1,4 @@
-export declare const cprefix = "toastsrap-";
+export declare const cprefix = "toaststrap-";
 export declare function gclass(c: string): string;
 export declare enum POSITION {
     TOP_START = "TOP_START",

@@ -19,16 +19,16 @@ node_modules
 .yarn.lock
 
 # example ignores
-react-example/node_modules
-react-example/.pnp
-react-example/.pnp.js
-react-example/coverage
-react-example/build
-react-example/.DS_Store
-react-example/.env.local
-react-example/.env.development.local
-react-example/.env.test.local
-react-example/.env.production.local
-react-example/npm-debug.log*
-react-example/yarn-debug.log*
-react-example/yarn-error.log*
+examples/react-example/node_modules
+examples/react-example/.pnp
+examples/react-example/.pnp.js
+examples/react-example/coverage
+examples/react-example/build
+examples/react-example/.DS_Store
+examples/react-example/.env.local
+examples/react-example/.env.development.local
+examples/react-example/.env.test.local
+examples/react-example/.env.production.local
+examples/react-example/npm-debug.log*
+examples/react-example/yarn-debug.log*
+examples/react-example/yarn-error.log*

@@ -1,9 +1,7 @@
-import logo from './logo.svg';
-import './App.css';
-import Toast, {ToastType, ToastPosition} from 'toastsrap';
-
+import Toast, {ToastType, ToastPosition} from 'toaststrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import 'toastsrap/dist/toastsrap.css'
+import 'toaststrap/dist/toaststrap.css'
+import './App.css';
 
 function App() {
 
@@ -23,12 +21,14 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App" style={{
+      backgroundImage: `url(initbg.svg)`
+    }}>
 
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src="./logo.png" className="App-logo" alt="logo" />
         <p>
-          bootstrap5-toast
+          React Example
         </p>
         <div className="btn-group" role="group" aria-label="Basic outlined example">
           <button type="button" className="btn btn-outline-primary" onClick={() => handleClick(ToastPosition.TOP_START)}>Top Start</button>

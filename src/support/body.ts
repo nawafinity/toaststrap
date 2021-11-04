@@ -1,6 +1,6 @@
-import Toastsrap from "../ToastFactory"
+import Toaststrap from "../ToastFactory"
 
-export const ToastBody = (context: Toastsrap) => {
+export const ToastBody = (context: Toaststrap) => {
   const { options } = context
   const bodyElement = document.createElement("div")
   bodyElement.classList.add("toast-body")

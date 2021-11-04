@@ -6,17 +6,17 @@ import "./assets/styles.scss"
 
 declare global {
   interface Window {
-    toastsrap: (options: OptionsType) => ToastFactory;
-    toastsrap_type: any;
-    toastsrap_position: any;
+    toaststrap: (options: OptionsType) => ToastFactory;
+    toaststrap_type: any;
+    toaststrap_position: any;
   }
 }
 
 // Types
-window.toastsrap_type = TYPES
-window.toastsrap_position = POSITION
+window.toaststrap_type = TYPES
+window.toaststrap_position = POSITION
 
-const initialize = window.toastsrap = (options: OptionsType): ToastFactory => {
+const initialize = window.toaststrap = (options: OptionsType): ToastFactory => {
   if (!options.soundSource || options.soundSource.length === 0) {
     options.soundSource = notificationSound
   }

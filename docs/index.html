@@ -5,22 +5,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
   <link href="logo.png" rel="icon" />
-  <title>Documentation | Toastsrap by @nawafscript</title>
+  <title>Documentation | Toaststrap by @nawafscript</title>
   <meta name="description" content="A simple, lightweight javaScript library for showing a beautiful toast popups.">
   <meta name="author" content="Nawaf Khalifah">
 
   <!-- Stylesheet
   ============================== -->
   <!-- Bootstrap -->
-  <link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+
   <!-- Font Awesome Icon -->
   <link rel="stylesheet" type="text/css" href="assets/vendor/font-awesome/css/all.min.css" />
+
   <!-- Magnific Popup -->
   <link rel="stylesheet" type="text/css" href="assets/vendor/magnific-popup/magnific-popup.min.css" />
+
   <!-- Highlight Syntax -->
   <link rel="stylesheet" type="text/css" href="assets/vendor/highlight.js/styles/github.css" />
-  <!-- Toastsrap -->
-  <link rel="stylesheet" type="text/css" href="assets/vendor/toaststrap/toastsrap.css" />
+
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" type="text/css" href="assets/css/stylesheet.css" />
 </head>
@@ -52,14 +56,14 @@
           class="w-75"></span><span class="w-50"></span></button>
 
         <!-- Logo -->
-        <a class="logo ml-md-3" href="index.html" title="iDocs Template">
-          <img src="logo.png" alt="Toastsrap v1.0" style="max-width: 120px" />
+        <a class="logo ms-md-3" href="index.html" title="iDocs Template">
+          <img src="logo.png" alt="Toaststrap v1.0" style="max-width: 120px" />
         </a>
-        <span class="text-2 ml-2">v1.0</span>
+        <span class="text-2 ms-2">v1.0</span>
         <!-- Logo End -->
 
         <!-- Navbar Toggler -->
-        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#header-nav">
+        <button class="navbar-toggler ms-auto" type="button" data-toggle="collapse" data-target="#header-nav">
           <span></span><span></span><span></span>
         </button>
 
@@ -73,7 +77,7 @@
             </li>
           </ul>
         </div>
-        <ul class="social-icons social-icons-sm ml-lg-2 mr-2">
+        <ul class="social-icons social-icons-sm ms-lg-2 me-2">
           <li class="social-icons-twitter">
             <a data-toggle="tooltip" href="https://twitter.com/nawafable/" target="_blank" title=""
                data-original-title="@Nawafable">
@@ -134,7 +138,7 @@
         <!-- Getting Started -->
         <section id="docs-get_started">
           <h1>Documentation</h1>
-          <h2>Toastsrap</h2>
+          <h2>Toaststrap</h2>
           <p class="lead">A simple, lightweight javascript library for creating toast popups using bootstrap 5
             styles.</p>
           <hr>
@@ -161,8 +165,8 @@
         <!-- Demo -->
         <section id="docs-demo">
           <h2>Demo</h2>
-          <p>Tryout the Toastsrap initializer and have fun.</p>
-          <a class="btn btn-lg btn-outline-primary" href="Initializer/index.html">Tostsrap Initializer</a>
+          <p>Tryout the Toaststrap's initializer and have fun.</p>
+          <a class="btn btn-lg btn-outline-primary" href="Initializer/index.html">Toaststrap Initializer</a>
         </section>
 
         <hr class="divider">
@@ -181,7 +185,7 @@
         <!-- Usage in browser -->
         <section id="usage_browser">
           <h2>Using in browser</h2>
-          <p>Toastsrap uses Bootstrap 5 css styles, so before you get started be sure that you are using the latest
+          <p>Toaststrap uses Bootstrap 5 css styles, so before you get started be sure that you are using the latest
             version of Bootstrap5.
           <div class="alert alert-warning"><strong>Notic</strong> It's may not work with older Bootstrap versions.</div>
 
@@ -201,8 +205,8 @@
 &lt;!-- bootstrap 5 --&gt;
 &lt;link href=&quot;bootstrap.min.css&quot; rel=&quot;stylesheet&quot; media=&quot;all&quot;&gt;
 
-&lt;!-- Tostsrap --&gt;
-&lt;link href=&quot;assets/tostsrap.css&quot; rel=&quot;stylesheet&quot; media=&quot;all&quot;&gt;
+&lt;!-- Toaststrap --&gt;
+&lt;link href=&quot;assets/toaststrap.css&quot; rel=&quot;stylesheet&quot; media=&quot;all&quot;&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;/body&gt;
@@ -215,11 +219,11 @@
 
               <pre>
                 <code class="html">
-&lt;script src=&quot;assets/tostsrap.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;assets/toaststrap.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
     // This is just an example
-    if (window.toastsrap) {
-        toastsrap({title: 'Haai', noHeader: true}).show();
+    if (window.toaststrap) {
+        toaststrap({title: 'Haai', noHeader: true}).show();
     }
 &lt;/script&gt;
                 </code>
@@ -227,7 +231,7 @@
             </li>
           </ol>
           <div class="alert alert-info">For more examples, you can check out the
-            <a href="Initializer">Toastsrap Initializer</a>
+            <a href="Initializer">Toaststrap's Initializer</a>
           </div>
         </section>
 
@@ -236,7 +240,7 @@
         <!-- Usage with Apps-->
         <section id="usage_app">
           <h2>Using with modern applications</h2>
-          <p>Toastsrap was developed to support modern browsers, applications built on older versions of NodeJS (CJS),
+          <p>Toaststrap was developed to support modern browsers, applications built on older versions of NodeJS (CJS),
             and modern application (ESM). </p>
           <p>You can find the build files inside <code>lib</code> folder.</p>
 
@@ -251,10 +255,10 @@
               Import the library into your JSX component
               <pre>
                 <code class="jsx">
-import Toastsrap, {ToastType, ToastPosition} from 'tostsrap'
+import Toaststrap, {ToastType, ToastPosition} from 'toaststrap'
 const MyComponent = (props) => {
   handleClick = () => {
-    const toast = Toastsrap({
+    const toast = Toaststrap({
       title: 'Toast Title',
       text: 'Toast Text',
       position: ToastPosition.TOP_END,
@@ -319,7 +323,7 @@ const MyComponent = (props) => {
               </pre>
             </li>
             <li>
-              Building Toastsrap
+              Building Toaststrap
               <pre>
                 <code class="bash">npm run prod</code>
               </pre>
@@ -337,7 +341,7 @@ const MyComponent = (props) => {
         <!-- # Configuration -->
         <section id="docs-configuration">
           <h2>Configuration</h2>
-          <p>Toastsrap provides many options for customizing the toast popup.</p>
+          <p>Toaststrap provides many options for customizing the toast popup.</p>
 
           <table class="table table-bordered">
             <thead>
@@ -466,7 +470,7 @@ const MyComponent = (props) => {
               <td>The margins of the popup.</td>
             </tr>
             <tr>
-              <td><code>sound_source</code></td>
+              <td><code>soundSource</code></td>
               <td>1.0</td>
               <td><code>link</code></td>
               <td><code>no</code></td>
@@ -510,11 +514,13 @@ const MyComponent = (props) => {
           <h2>Source & Credits</h2>
           <h4>Notification Sound:</h4>
           <ul>
-            <li>Mixkit - <a target="_blank" href="https://unsplash.com/">https://mixkit.co/free-sound-effects/notification/</a></li>
+            <li>Mixkit - <a target="_blank" href="https://unsplash.com/">https://mixkit.co/free-sound-effects/notification/</a>
+            </li>
           </ul>
           <h4>Documentation</h4>
           <ul>
-            <li>iDoc - <a target="_blank" href="https://fontawesome.com/">https://github.com/harnishdesign/iDocs/</a></li>
+            <li>iDoc - <a target="_blank" href="https://fontawesome.com/">https://github.com/harnishdesign/iDocs/</a>
+            </li>
           </ul>
           <h4>Libraries</h4>
           <ul>
@@ -531,7 +537,8 @@ const MyComponent = (props) => {
         <section id="docs-support">
           <h2>Support</h2>
           <p>If this documentation doesn't answer your questions, So, Please open an issue via <a
-            class="btn btn-primary" target="_blank" href="https://github.com/nawafscript/toaststrap/issues">Github Issues</a></p>
+            class="btn btn-primary" target="_blank" href="https://github.com/nawafscript/toaststrap/issues">Github
+            Issues</a></p>
         </section>
 
         <hr class="divider">
@@ -576,7 +583,9 @@ const MyComponent = (props) => {
           </a>
         </li>
       </ul>
-      <div class="text-center">Copyright &copy; 2020 <a href="https://github.com/nawafscript/toaststrap" class="text-light" style="text-decoration: underline">@nawafscript</a>. All Rights Reserved.
+      <div class="text-center">Copyright &copy; 2020 <a href="https://github.com/nawafscript/toaststrap"
+                                                        class="text-light" style="text-decoration: underline">@nawafscript</a>.
+        All Rights Reserved.
       </div>
       <div class="text-2 text-center mb-0">
         Design &amp; Develop with 💓 by <a class="btn-link text-light" style="text-decoration: underline"
@@ -597,15 +606,16 @@ const MyComponent = (props) => {
 ============================ -->
 <script src="assets/vendor/jquery/jquery.min.js"></script>
 
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 <!-- Highlight JS -->
 <script src="assets/vendor/highlight.js/highlight.min.js"></script>
 <!-- Easing -->
 <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
 <!-- Magnific Popup -->
 <script src="assets/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-<!-- Toastsrap -->
-<script src="assets/vendor/toaststrap/toastsrap.js"></script>
+<!-- Toaststrap -->
+<script src="assets/vendor/toaststrap/toaststrap.js"></script>
 <!-- Custom Script -->
 <script src="assets/js/theme.js"></script>
 

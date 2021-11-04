@@ -2,7 +2,7 @@
   <img width="200" src="docs/logo.png">
 </p>
 
-<h1 align="center">Toastsrap</h1>
+<h1 align="center">Toaststrap</h1>
 
 <div align="center">
 
@@ -40,7 +40,7 @@ Check the [Documentation](https://nawafscript.github.io/toaststrap/) to get you 
 
 ## Demo
 
-Have fun with Toastsrap's [Initializer](https://nawafscript.github.io/toaststrap/Initializer/index.html)!
+Have fun with Toaststrap's [Initializer](https://nawafscript.github.io/toaststrap/Initializer/index.html)!
 
 ## Contribute
 Show your ❤️ and support by giving a ⭐. Any suggestions are welcome!

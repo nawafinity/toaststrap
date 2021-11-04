@@ -1,4 +1,4 @@
-export const cprefix = "toastsrap-"
+export const cprefix = "toaststrap-"
 
 export function gclass(c: string) {
   return cprefix + c

@@ -1,5 +1,5 @@
 import { getHumanTime, toBoolean } from "../helpers"
-import Toastsrap from "../ToastFactory"
+import Toaststrap from "../ToastFactory"
 import prefrences from "../prefrences"
 import { OptionsType } from "../types"
 
@@ -27,7 +27,7 @@ const CloseButtonComponent = (onCloseEvent: () => void) => {
   return closeBtnElement
 }
 
-export const HeaderComponent = (context: Toastsrap): Element => {
+export const HeaderComponent = (context: Toaststrap): Element => {
   const { options } = context
   const headerElement = document.createElement("div")
   headerElement.classList.add("toast-header")

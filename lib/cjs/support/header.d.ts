@@ -1,2 +1,2 @@
-import Toastsrap from "../ToastFactory";
-export declare const HeaderComponent: (context: Toastsrap) => Element;
+import Toaststrap from "../ToastFactory";
+export declare const HeaderComponent: (context: Toaststrap) => Element;
