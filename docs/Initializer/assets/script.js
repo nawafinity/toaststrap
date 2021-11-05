@@ -51,7 +51,7 @@ var toast = Toaststrap.initialize({
   // Customization
   noHeader: ${formValues.noHeader ? true : false},
   dismissible: ${formValues.dismissible === "true" ? true : false},
-  pauseable: ${formValues.pauseable === "true" ? true : false},
+  pausable: ${formValues.pausable === "true" ? true : false},
   progress: ${formValues.progress},
   
   // Parent node
