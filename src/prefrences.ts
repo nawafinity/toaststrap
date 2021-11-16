@@ -7,11 +7,10 @@ export function gclass(c: string) {
 export enum POSITION {
   TOP_START = "TOP_START",
   TOP_END = "TOP_END",
+  TOP_CENTER = "TOP_CENTER",
   BOTTOM_START = "BOTTOM_START",
   BOTTOM_END = "BOTTOM_END",
-  CENTER_START = "CENTER_START",
-  CENTER_END = "CENTER_END",
-  CENTER = "CENTER"
+  BOTTOM_CENTER = "BOTTOM_CENTER",
 }
 
 export enum TYPES {
@@ -31,13 +30,10 @@ export default {
     // TOP
     TOP_START: gclass("top") + " " + gclass("start"),
     TOP_END: gclass("top") + " " + gclass("end"),
-    TOP_CENTER: "",
-
-    // Middle
-    MIDDLE_LEFT: "",
-    MIDDLE_RIGHT: "",
+    TOP_CENTER: gclass("top") + " " + gclass("center"),
 
     // Bottom
+    BOTTOM_CENTER: gclass("bottom") + " " + gclass("center"),
     BOTTOM_START: gclass("bottom") + " " + gclass("start"),
     BOTTOM_END: gclass("bottom") + " " + gclass("end"),
   },

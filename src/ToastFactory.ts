@@ -12,13 +12,11 @@ import { ProgressComponent } from "./support/progress"
 
 dayjs.extend(relativeTime)
 
-/**
- * JavaScript library for showing a bootstrap5 toast notification.
- *
- * @author Nawaf Khalifah
- * @version 1.0.0
- */
+
 class ToastFactory {
+
+  private readonly id: string;
+  private readonly createdAt: string;
   public options: OptionsType
   private item: HTMLElement
   private readonly sound: Sound | undefined
@@ -29,27 +27,39 @@ class ToastFactory {
   public pauseProgressInterval: boolean
   public progressStartTime: number
 
+  /**
+   *
+   * @param {OptionsType} options
+   */
   constructor(options?: OptionsType) {
+
     this.options = {
-      progress: true,
+      avatar: undefined,
+      datetime: undefined,
       dismissible: true,
-      duration: 3,
-      pausable: true,
-      id: v4(),
-      space: 5,
+      duration: 3000,
+      noHeader: false,
+      onCloseCallBack(): void {
+      },
+      parent: "",
+      pausable: false,
+      position: "",
+      progress: false,
+      soundSource: "",
+      soundable: false,
+      space: 0,
+      subtitle: "",
       text: "",
       title: "",
-      position: POSITION.TOP_END,
-
-      // Override defaults.
-      ...options,
+      type: undefined,
+      ...options
     }
 
     if (this.options.duration > 0) {
       this.options.duration = this.options.duration * 1000
     }
 
-    this.group = this.options.position!
+    this.group = this.options.position! || POSITION.TOP_END
 
 
     if (Object.keys(POSITION).includes(this.options.position!)) {
@@ -65,6 +75,8 @@ class ToastFactory {
       this.sound = new Sound(this.options.soundSource, this.parentElement)
     }
 
+    this.id = v4();
+    this.createdAt = dayjs().toString();
     this.timeout = setTimeout(() => {
     }, 0)
     this.progressInterval = setInterval(() => {
@@ -93,7 +105,7 @@ class ToastFactory {
     }
 
     // Order toasts.
-    this.orderize()
+    this.organize()
 
 
     return this
@@ -123,8 +135,8 @@ class ToastFactory {
     const toastElement = document.createElement("div")
     toastElement.classList.add("toast")
 
-    container.setAttribute("data-id", this.options.id)
-    container.setAttribute("data-created-at", this.options.datetime!)
+    container.setAttribute("data-id", this.id)
+    container.setAttribute("data-created-at", this.createdAt)
     container.setAttribute("data-type", this.options.type ? this.options.type.toLowerCase() : "")
     container.setAttribute("data-group", this.group)
 
@@ -149,7 +161,7 @@ class ToastFactory {
 
     // Watch toast height changed, and re-order if happen.
     new ResizeObserver(() => {
-      this.orderize()
+      this.organize()
     }).observe(container)
 
     // Toast instance.
@@ -164,18 +176,26 @@ class ToastFactory {
       }, this.options.duration)
 
       if (toBoolean(this.options.pausable)) {
-        this.item.addEventListener("mouseover", () => {
+        const touchStartCallBack = () => {
           clearTimeout(this.timeout)
           this.pauseProgressInterval = true
-        })
+        }
 
-        this.item.addEventListener("mouseleave", () => {
+        const touchEndCallBack = () => {
           this.pauseProgressInterval = false
           this.progressStartTime = new Date().getTime()
 
           this.timeout = setTimeout(() => {
             this.destroy(this.item)
           }, this.options.duration)
+        }
+
+        "mouseover touchstart touchend".split(" ").forEach(e => {
+          this.item.addEventListener(e, touchStartCallBack)
+        })
+
+        "mouseleave touchend".split(" ").forEach(e => {
+          this.item.addEventListener(e, touchEndCallBack)
         })
       }
 
@@ -223,7 +243,7 @@ class ToastFactory {
 
   }
 
-  private orderize() {
+  private organize() {
     const { space } = this.options
 
     const topLeftOffsetSize = {
@@ -259,6 +279,8 @@ class ToastFactory {
 
         if (hasClass(toast, gclass("top"))) {
           classUsed = gclass("top")
+        } else if (hasClass(toast, gclass("middle"))) {
+          classUsed = gclass("middle")
         } else {
           classUsed = gclass("bottom")
         }

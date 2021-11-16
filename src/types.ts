@@ -1,10 +1,30 @@
+/**
+ * Available Toaststrap options.
+ *
+ * @version 1.0.0
+ *
+ */
 export declare type OptionsType = {
-  id: string;
 
-  // Toast title.
+  /**
+   * @description Toast title that will shows in the header, if snackbar option is false.
+   * @version 1.0.0
+   */
   title: string;
 
-  // Toast content {HTML allowed}.
+  /**
+   * @param {string | {datetime: string, human: boolean}}
+   */
+  subtitle?: string | {
+    datetime: string,
+    human: boolean
+  };
+
+
+  /**
+   * @deprecated Will remove on version 1.0.2
+   * @version 1.0.0
+   */
   text: string;
 
   //
@@ -16,16 +36,26 @@ export declare type OptionsType = {
   //
   progress: boolean;
 
-  // Toast datetime (Shows in header).
+  /**
+   * @deprecated since version 1.0.2, please use subtitle.
+   * @version 1.0.0
+   * @param {string} datetime
+   */
   datetime?: string;
 
-  // Toast type.
+  /**
+   * @version 1.0.0
+   */
   type?: any;
 
-  // Hide the toast header.
+  /**
+   * @version 1.0.0
+   */
   noHeader?: boolean;
 
-  // Toast position.
+  /**
+   * @version 1.0.0
+   */
   position?: string;
 
   // Toast parentNode.

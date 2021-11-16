@@ -48,6 +48,11 @@ $bgs: (
     bottom: -155px;
   }
 
+  &-middle {
+    top: 50%;
+    margin-top: -50px;
+  }
+
   @each $space in $spaces {
     &-start-#{$space} {
       left: $space + px;
@@ -66,12 +71,8 @@ $bgs: (
         left: $space + px;
       }
     }
-  }
 
-  @media only screen and (max-width: 360px) {
-
-    &-start,
-    &-end {
+    &-center-#{$space} {
       margin-left: 0;
       margin-right: 0;
       left: 0;
@@ -84,6 +85,7 @@ $bgs: (
   }
 }
 
+// Footer
 .toast-footer {
   height: 3px;
   overflow: hidden;
@@ -107,6 +109,30 @@ $bgs: (
 
 }
 
-.bg-sweet {
-  background-color: #f4a3c4;
+// Variants
+@each $key, $value in $bgs {
+  .bg-#{$key} {
+    @if (type-of($value) != color) {
+      background-color: rgb(var($value)) !important;
+    } @else {
+      background-color: $value !important;
+    }
+  }
+}
+
+// Responsibility
+@media (max-width: 575.98px) {
+  .#{$prefix} {
+    &-top,
+    &-bottom {
+      margin-left: 0;
+      margin-right: 0;
+      left: 0;
+      right: 0;
+
+      .toast {
+        margin: auto;
+      }
+    }
+  }
 }

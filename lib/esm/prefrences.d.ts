@@ -3,11 +3,10 @@ export declare function gclass(c: string): string;
 export declare enum POSITION {
     TOP_START = "TOP_START",
     TOP_END = "TOP_END",
+    TOP_CENTER = "TOP_CENTER",
     BOTTOM_START = "BOTTOM_START",
     BOTTOM_END = "BOTTOM_END",
-    CENTER_START = "CENTER_START",
-    CENTER_END = "CENTER_END",
-    CENTER = "CENTER"
+    BOTTOM_CENTER = "BOTTOM_CENTER"
 }
 export declare enum TYPES {
     DEFAULT = "DEFAULT",
@@ -24,8 +23,7 @@ declare const _default: {
         TOP_START: string;
         TOP_END: string;
         TOP_CENTER: string;
-        MIDDLE_LEFT: string;
-        MIDDLE_RIGHT: string;
+        BOTTOM_CENTER: string;
         BOTTOM_START: string;
         BOTTOM_END: string;
     };

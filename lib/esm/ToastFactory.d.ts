@@ -1,12 +1,8 @@
 /// <reference types="node" />
 import { OptionsType } from "./types";
-/**
- * JavaScript library for showing a bootstrap5 toast notification.
- *
- * @author Nawaf Khalifah
- * @version 1.0.0
- */
 declare class ToastFactory {
+    private readonly id;
+    private readonly createdAt;
     options: OptionsType;
     private item;
     private readonly sound;
@@ -16,6 +12,10 @@ declare class ToastFactory {
     progressInterval: NodeJS.Timer;
     pauseProgressInterval: boolean;
     progressStartTime: number;
+    /**
+     *
+     * @param {OptionsType} options
+     */
     constructor(options?: OptionsType);
     /**
      * Display toast to user.
@@ -44,6 +44,6 @@ declare class ToastFactory {
      * Remove the element from dom after timeout finished.
      */
     private destroy;
-    private orderize;
+    private organize;
 }
 export default ToastFactory;
