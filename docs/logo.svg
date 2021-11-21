@@ -1,0 +1,15 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 408" width="512" height="408">
+	<title>bootstrap-logo-svg</title>
+	<defs>
+		<linearGradient id="grd1" gradientUnits="userSpaceOnUse"  x1="76.079" y1="10.798" x2="523.48" y2="365.945">
+			<stop offset="0" stop-color="#4f6ab0"  />
+			<stop offset="1" stop-color="#548ed2"  />
+		</linearGradient>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: url(#grd1) } 
+	</style>
+	<path id="Layer" class="shp0" d="M56.48 53.32C55.52 25.58 77.13 0 106.34 0L405.69 0C434.91 0 456.52 25.58 455.56 53.32C454.63 79.97 455.83 114.48 464.52 142.63C473.23 170.86 487.93 188.71 512 191L512 217C487.93 219.29 473.24 237.14 464.52 265.37C455.83 293.51 454.63 328.03 455.56 354.68C456.52 382.42 434.91 408 405.69 408L106.34 408C77.13 408 55.52 382.42 56.48 354.68C57.41 328.03 56.2 293.52 47.52 265.37C38.8 237.14 24.07 219.29 0 217L0 191C24.07 188.71 38.8 170.86 47.52 142.63C56.2 114.48 57.41 79.97 56.48 53.32L56.48 53.32Z" />
+	<path id="T" fill="#f7f1fd" aria-label="T"  d="M172.2 128.29L172.2 105.71L339.95 105.71L339.95 128.29L269.55 128.29L269.55 304L242.59 304L242.59 128.29L172.2 128.29Z" />
+</svg>

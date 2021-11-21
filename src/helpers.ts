@@ -1,11 +1,9 @@
-import dayjs from "dayjs"
-
 const hasClass = (element: Element, className: string) => {
   return element.classList.contains(className)
 }
 
-const getHumanTime = (datetime: string) => {
-  return dayjs(datetime).fromNow()
+const generateId = (): string => {
+  return String(Math.floor(10000000000 + Math.random() * 9000000000))
 }
 
 /**
@@ -32,4 +30,4 @@ const toBoolean = (value?: string | boolean): boolean => {
   }
 }
 
-export { hasClass, getHumanTime, toBoolean }
+export { hasClass, toBoolean, generateId }

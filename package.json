@@ -5,13 +5,16 @@
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
   "private": false,
+  "types": "types.d.ts",
   "scripts": {
-    "dev": "npm run build:bundle-dev",
+    "dev": "yarn build:esm && yarn build:cjs && yarn build:bundle-dev",
     "prod": "npm run build:esm && npm run build:cjs && npm run build:bundle",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir ./lib/cjs",
     "build:bundle": "webpack --mode production",
-    "build:bundle-dev": "webpack --watch --mode development"
+    "build:bundle-dev": "webpack --watch --mode development",
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "keywords": [
     "bootstrap",
@@ -35,6 +38,7 @@
     "email": "nawafinity@gmail.com"
   },
   "devDependencies": {
+    "@types/node": "^16.11.9",
     "@types/uuid": "^8.3.1",
     "css-loader": "^6.5.0",
     "file-loader": "^6.2.0",
@@ -46,13 +50,15 @@
     "shx": "^0.3.3",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.2.6",
-    "typedoc": "^0.22.9",
     "typescript": "^4.4.4",
     "webpack": "^5.60.0",
     "webpack-cli": "^4.9.1"
   },
   "dependencies": {
+    "@types/jest": "^27.0.3",
     "dayjs": "^1.10.7",
+    "jest": "^27.3.1",
+    "ts-jest": "^27.0.7",
     "uuid": "^8.3.2"
   },
   "files": [

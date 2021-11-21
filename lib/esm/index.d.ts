@@ -1,13 +1,12 @@
-import ToastFactory from "./ToastFactory";
+import Toaststrap from "./Toaststrap";
 import { OptionsType } from "./types";
-import { POSITION, TYPES } from "./prefrences";
-export declare const ToastType: typeof TYPES;
-export declare const ToastPosition: typeof POSITION;
+import { POSITIONS, TYPES } from "./preferences";
+export { POSITIONS as ToastPositions, TYPES as ToastTypes };
 /**
- * # Toaststrap
+ * A simple, lightweight library for showing Bootstrap 5 toasts.
  *
- * A simple, lightweight javascript library for creating a Bootstrap 5 toasts.
+ * @version 1.0.2
  *
- * @param options
+ * @packageDocumentation
  */
-export default function (options: OptionsType): ToastFactory;
+export default function (options: OptionsType): Toaststrap;

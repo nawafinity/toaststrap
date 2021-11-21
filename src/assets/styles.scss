@@ -18,6 +18,7 @@ $bgs: (
 );
 
 .#{$prefix} {
+
   &-container {
     display: none;
     transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -94,6 +95,11 @@ $bgs: (
     width: 0;
     height: inherit;
     background-color: rgb(var(--bs-secondary-rgb));
+    animation: move-progress infinite;
+
+    .#{$prefix}-container:hover & {
+      animation-play-state: paused;
+    }
 
     @each $key, $value in $bgs {
       [data-type='#{$key}'] & {
@@ -103,6 +109,10 @@ $bgs: (
           background-color: $value !important;
         }
       }
+    }
+
+    [data-snackbar=true] & {
+      background-color: rgba(255,255,255,.85) !important;
     }
 
   }
@@ -134,5 +144,15 @@ $bgs: (
         margin: auto;
       }
     }
+  }
+}
+
+
+@keyframes move-progress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
   }
 }

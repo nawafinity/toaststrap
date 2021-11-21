@@ -16,7 +16,10 @@ const config = {
   context: __dirname,
   entry: "./src/browser.ts",
 
+
   output: {
+    publicPath: "/",
+    path: path.resolve(__dirname, 'bundle'),
     filename: "toaststrap.js",
     library: "Toaststrap",
   },
@@ -57,7 +60,7 @@ const config = {
     extensions: [".ts", ".tsx", ".js", ".css", ".scss"],
   },
 
-  devtool: "source-map",
+  devtool: "inline-source-map",
 };
 
 module.exports = config;
