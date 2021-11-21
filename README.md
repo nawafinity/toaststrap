@@ -1,6 +1,6 @@
 
 <p align="center">  
-  <img width="200" src="./docs/logo.svg" alt="Toaststrap v1.0.1">  
+  <img width="200" src="./docs/logo.svg" alt="Toaststrap v1.1.0">  
 </p>  
 
 <h1 align="center">Toaststrap</h1>  

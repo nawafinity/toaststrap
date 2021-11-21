@@ -3,13 +3,13 @@ import Toaststrap from "./Toaststrap"
 export type SubTitleType = {
   /**
    * Ability to show a relative datetime.
-   * @version 1.0.2
+   * @version 1.1.0
    */
   relative: boolean,
 
   /**
    * The date value.
-   * @version 1.0.2
+   * @version 1.1.0
    */
   datetime: string | Date | number
 }
@@ -24,7 +24,7 @@ export type OptionsType = {
 
   /**
    * The subtitle to be display in the toast header, it's can be either string or datetime object.
-   * @version 1.0.1
+   * @version 1.1.0
    */
   subtitle?: SubTitleType | string;
 
@@ -109,27 +109,27 @@ export type OptionsType = {
 
   /**
    * Ability to add some offset to axis.
-   * @version 1.0.2
+   * @version 1.1.0
    * @default 10
    */
   offset: 5 | 10 | 15 | 20;
 
   /**
    * The close hook, which will be invoked after the toast closed.
-   * @version 1.0.2
+   * @version 1.1.0
    */
   onClose?: (toast: Toaststrap) => void;
 
   /**
    * The show hook, which will be invoked when the toast showen.
-   * @version 1.0.2
+   * @version 1.1.0
    */
   onShow?: (toast: Toaststrap) => void
 
   /**
    * Ability to hide the header, and show a snakebar.
    *
-   * @version 1.0.2
+   * @version 1.1.0
    * @default false
    */
   snackbar?: boolean;

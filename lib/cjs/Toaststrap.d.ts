@@ -1,11 +1,11 @@
 /// <reference types="node" />
 import type { OptionsType } from "./types";
 /**
- * Toaststrap class for building and generating the Toaststrap's toast.
+ * Toaststrap class for building and generating the toast.
  *
  * @class Toaststrap
  *
- * @version 1.0.1
+ * @version 1.1.0
  */
 declare class Toaststrap {
     /**

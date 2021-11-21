@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 
 
 
-## [1.0.1] - 2021-11-21
+## [1.1.0] - 2021-11-21
 
 Performance has been improved, issue() and issue() fixed, and some improvements added.
 
