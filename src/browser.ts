@@ -1,28 +1,33 @@
-import { POSITION, TYPES } from "./prefrences"
-import ToastFactory from "./ToastFactory"
-import { OptionsType } from "./types"
-import notificationSound from "./assets/sound.wav"
+import Toaststrap from "./Toaststrap"
+import type { OptionsType } from "./types"
+import { POSITIONS, TYPES } from "./preferences"
 import "./assets/styles.scss"
+import filters from "./typecheck"
 
 declare global {
   interface Window {
-    toaststrap: (options: OptionsType) => ToastFactory;
-    toaststrap_type: any;
-    toaststrap_position: any;
+    toaststrap: (options: OptionsType) => Toaststrap;
+    toaststrap_position: any,
+    toaststrap_type: any
   }
 }
 
-// Types
-window.toaststrap_type = TYPES
-window.toaststrap_position = POSITION
+/**
+ *
+ * @param {OptionsType} options
+ */
+const initialize = (options: OptionsType): Toaststrap => {
 
-const initialize = window.toaststrap = (options: OptionsType): ToastFactory => {
-  if (!options.soundSource || options.soundSource.length === 0) {
-    options.soundSource = notificationSound
+  // Securing types.
+  if (Object.keys(options).length) {
+    filters(options);
   }
-  return new ToastFactory({
+  return new Toaststrap({
     ...options,
   })
 }
 
-export { initialize, POSITION, TYPES }
+// Window
+window.toaststrap = initialize
+window.toaststrap_position = POSITIONS
+window.toaststrap_type = TYPES

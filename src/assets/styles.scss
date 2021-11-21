@@ -18,6 +18,7 @@ $bgs: (
 );
 
 .#{$prefix} {
+
   &-container {
     display: none;
     transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -48,6 +49,11 @@ $bgs: (
     bottom: -155px;
   }
 
+  &-middle {
+    top: 50%;
+    margin-top: -50px;
+  }
+
   @each $space in $spaces {
     &-start-#{$space} {
       left: $space + px;
@@ -66,12 +72,8 @@ $bgs: (
         left: $space + px;
       }
     }
-  }
 
-  @media only screen and (max-width: 360px) {
-
-    &-start,
-    &-end {
+    &-center-#{$space} {
       margin-left: 0;
       margin-right: 0;
       left: 0;
@@ -84,6 +86,7 @@ $bgs: (
   }
 }
 
+// Footer
 .toast-footer {
   height: 3px;
   overflow: hidden;
@@ -92,6 +95,11 @@ $bgs: (
     width: 0;
     height: inherit;
     background-color: rgb(var(--bs-secondary-rgb));
+    animation: move-progress infinite;
+
+    .#{$prefix}-container:hover & {
+      animation-play-state: paused;
+    }
 
     @each $key, $value in $bgs {
       [data-type='#{$key}'] & {
@@ -103,10 +111,48 @@ $bgs: (
       }
     }
 
+    [data-snackbar=true] & {
+      background-color: rgba(255,255,255,.85) !important;
+    }
+
   }
 
 }
 
-.bg-sweet {
-  background-color: #f4a3c4;
+// Variants
+@each $key, $value in $bgs {
+  .bg-#{$key} {
+    @if (type-of($value) != color) {
+      background-color: rgb(var($value)) !important;
+    } @else {
+      background-color: $value !important;
+    }
+  }
+}
+
+// Responsibility
+@media (max-width: 575.98px) {
+  .#{$prefix} {
+    &-top,
+    &-bottom {
+      margin-left: 0;
+      margin-right: 0;
+      left: 0;
+      right: 0;
+
+      .toast {
+        margin: auto;
+      }
+    }
+  }
+}
+
+
+@keyframes move-progress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }

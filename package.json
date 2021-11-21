@@ -1,31 +1,30 @@
 {
   "name": "toaststrap",
   "version": "1.0.0-beta-1",
-  "description": "A javaScript library for simple, lightweight toast popups. Uses Bootstrap 5 styles.",
+  "description": "A simple, lightweight javascript library for creating toast popups using bootstrap 5 styles.",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
   "private": false,
+  "types": "types.d.ts",
   "scripts": {
-    "dev": "npm run build:bundle-dev",
+    "dev": "yarn build:esm && yarn build:cjs && yarn build:bundle-dev",
     "prod": "npm run build:esm && npm run build:cjs && npm run build:bundle",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir ./lib/cjs",
     "build:bundle": "webpack --mode production",
-    "build:bundle-dev": "webpack --watch --mode development"
+    "build:bundle-dev": "webpack --watch --mode development",
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "keywords": [
     "bootstrap",
-    "5",
-    "toast",
-    "toast",
-    "toaster",
+    "bootstrap-toast",
+    "toaststrap",
+    "bootstrap 5",
+    "bootstrap5-toast",
     "bootstrap5-toaster",
-    "bs5-toaster",
-    "bootstrap",
-    "bootstrap",
-    "5",
-    "bootstrap5",
-    "toaststrap"
+    "toast notification",
+    "javascript toast"
   ],
   "author": "Nawaf Khalifah",
   "license": "MIT",
@@ -39,9 +38,11 @@
     "email": "nawafinity@gmail.com"
   },
   "devDependencies": {
+    "@types/node": "^16.11.9",
     "@types/uuid": "^8.3.1",
     "css-loader": "^6.5.0",
     "file-loader": "^6.2.0",
+    "jsdoc-plugin-typescript": "^2.0.6",
     "mini-css-extract-plugin": "^2.4.3",
     "prettier": "2.4.1",
     "sass": "^1.43.4",
@@ -54,7 +55,10 @@
     "webpack-cli": "^4.9.1"
   },
   "dependencies": {
+    "@types/jest": "^27.0.3",
     "dayjs": "^1.10.7",
+    "jest": "^27.3.1",
+    "ts-jest": "^27.0.7",
     "uuid": "^8.3.2"
   },
   "files": [

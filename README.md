@@ -6,7 +6,7 @@
 
 <div align="center">
 
-**Toaststrap** is a javascript library for simple, lightweight toast popups. It uses bootstrap 5 styles.
+**Toaststrap** is a javascript library for simple, lightweight popups using Bootstrap 5 styles.
 
 
 </div>
@@ -22,7 +22,7 @@
 
 ## Preview
 
-I created this library for everyone who use Bootstrap5 and want to show some beautiful notifications for his users.
+I created this library for everyone who uses Bootstrap 5 and wants to show some beautiful notifications for his users.
 
 ## Features
 - [x] Pure JavaScript without jQuery.
@@ -47,7 +47,7 @@ Show your ❤️ and support by giving a ⭐. Any suggestions are welcome!
 
 
 
-## Become a sponsor
+## Sponsor
 <a href="https://ko-fi.com/nawafinity" target="_blank">
     <img src="docs/sponsor.png" />
 </a>

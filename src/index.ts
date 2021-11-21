@@ -1,10 +1,20 @@
-import ToastFactory from "./ToastFactory"
+import Toaststrap from "./Toaststrap"
 import { OptionsType } from "./types"
-import { POSITION, TYPES } from "./prefrences"
+import { POSITIONS, TYPES } from "./preferences"
 
-export const ToastType = TYPES
-export const ToastPosition = POSITION
+export {
+  POSITIONS as ToastPositions,
+  TYPES as ToastTypes
+}
 
-export default function(options: OptionsType): ToastFactory {
-  return new ToastFactory(options)
+
+/**
+ * A simple, lightweight library for showing Bootstrap 5 toasts.
+ *
+ * @version 1.0.2
+ *
+ * @packageDocumentation
+ */
+export default function(options: OptionsType): Toaststrap {
+  return new Toaststrap(options)
 }
