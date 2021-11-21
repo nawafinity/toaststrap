@@ -1,5 +1,5 @@
 import preferences, { cprefix, gclass } from "./preferences"
-import { generateId, hasClass, toBoolean } from "./helpers"
+import { hasClass } from "./helpers"
 import type { OptionsType, SubTitleType } from "./types"
 import { POSITIONS, TYPES } from "./preferences"
 import { HeaderComponent } from "./components/header"
@@ -8,11 +8,13 @@ import { ToastContainer } from "./components/container"
 import Sound from "./components/sound"
 import { ProgressComponent } from "./components/progress"
 import RelativeDate from "./RelativeDate"
+import Util from "./Util"
 
 /**
  * Toaststrap class for building and generating the Toaststrap's toast.
  *
  * @class Toaststrap
+ *
  * @version 1.0.1
  */
 class Toaststrap {
@@ -117,7 +119,7 @@ class Toaststrap {
       if (typeof this.options.subtitle === "object" && "datetime" in this.options.subtitle) {
         const delta: SubTitleType = this.options.subtitle
 
-        if ("relative" in this.options.subtitle && toBoolean(this.options.subtitle.relative)) {
+        if ("relative" in this.options.subtitle && this.options.subtitle.relative) {
           this.options.subtitle = (new RelativeDate(delta.datetime).print())
         } else {
           this.options.subtitle = String(delta.datetime)
@@ -143,7 +145,7 @@ class Toaststrap {
       this.sound = new Sound(this.options.soundSource, this.parentElement)
     }
 
-    this.id = generateId()
+    this.id = Util.makeId()
     this.createdAt = Date.now().toString()
     this.timeout = setTimeout(() => {
     }, 0)
@@ -219,7 +221,7 @@ class Toaststrap {
     // Toast Body
     toastElement.appendChild(ToastBody(this))
 
-    if (toBoolean(this.options.progress)) {
+    if (this.options.progress) {
       // Toast Progress
       toastElement.appendChild(ProgressComponent(this))
     }
@@ -244,7 +246,7 @@ class Toaststrap {
         this.destroy(container)
       }, this.options.duration)
 
-      if (toBoolean(this.options.pausable)) {
+      if (this.options.pausable) {
         const touchStartCallBack = () => {
           clearTimeout(this.timeout)
           this.pauseProgressInterval = true

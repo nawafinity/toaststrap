@@ -1,14 +1,11 @@
 /spec
 /src
 /docs
-/example
-/react-example
+/examples
 .coveralls.yml
 .travis.yml
 .gitignore
 .index.html
-README.md
-README-ar.md
 .idea
 .vscode
 /tests

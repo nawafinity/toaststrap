@@ -18,7 +18,7 @@ declare global {
  */
 const initialize = (options: OptionsType): Toaststrap => {
 
-  // Securing types.
+  // Type checks.
   if (Object.keys(options).length) {
     filters(options);
   }

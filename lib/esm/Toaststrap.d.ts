@@ -4,6 +4,7 @@ import type { OptionsType } from "./types";
  * Toaststrap class for building and generating the Toaststrap's toast.
  *
  * @class Toaststrap
+ *
  * @version 1.0.1
  */
 declare class Toaststrap {

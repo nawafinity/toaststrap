@@ -7,7 +7,7 @@ export declare const cprefix = "toaststrap-";
  * @param {string} c
  */
 export declare function gclass(c: string): string;
-export declare enum POSITION {
+export declare enum POSITIONS {
     TOP_START = "TOP_START",
     TOP_END = "TOP_END",
     TOP_CENTER = "TOP_CENTER",

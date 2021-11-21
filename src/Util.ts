@@ -5,7 +5,6 @@ class Util {
 
 
       return str.replace(regex, (index) => {
-        console.log(index)
         let key = index.replace(/{/, "").replace(/}/, "")
         if (!values[key]) {
           return index
@@ -16,6 +15,10 @@ class Util {
     }
 
     return str
+  }
+
+  public static makeId() {
+    return String(Math.floor(10000000000 + Math.random() * 9000000000))
   }
 }
 

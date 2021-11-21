@@ -1,8 +1,2 @@
 declare const hasClass: (element: Element, className: string) => boolean;
-declare const generateId: () => string;
-/**
- * Quick fix of boolean
- * @see https://stackoverflow.com/questions/44024193/typescript-string-to-boolean
- */
-declare const toBoolean: (value?: string | boolean | undefined) => boolean;
-export { hasClass, toBoolean, generateId };
+export { hasClass };

@@ -1,4 +1,3 @@
-import { toBoolean } from "../helpers"
 import Toaststrap from "../Toaststrap"
 import preferences from "../preferences"
 import type { OptionsType } from "../types"
@@ -59,7 +58,7 @@ export const HeaderComponent = (context: Toaststrap): Element => {
   }
 
   // Close button
-  if (toBoolean(options.dismissible)) {
+  if (options.dismissible) {
     headerElement.appendChild(CloseButtonComponent(context.closeEvent))
   }
 
