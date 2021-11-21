@@ -15,6 +15,7 @@
 
 # Directories potentially created on remote AFP share
 node_modules
+coverage
 .package.lock
 .yarn.lock
 

@@ -41,11 +41,11 @@ I created this library for everyone who uses Bootstrap 5 and wants to show some 
 
 ## Documentation
 
-Check the [Documentation](https://nawafscript.github.io/toaststrap/docs) to get you started!
+Check the [Documentation](https://nawafscript.github.io/toaststrap/doc.html) to get you started!
 
 ## Demo
 
-Have fun with Toaststrap's [Initializer](https://nawafscript.github.io/toaststrap/Initializer)!
+Have fun with Toaststrap's [Initializer](https://nawafscript.github.io/toaststrap/initializer)!
 
 ## Contribute
 Show your ❤️ and support by giving a ⭐. Any suggestions are welcome!

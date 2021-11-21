@@ -1,2 +1,6 @@
 exclude_patterns:
   - "lib/"
+  - "test/"
+  - "examples/"
+  - "bundle/"
+  - "docs/"
