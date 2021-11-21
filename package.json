@@ -1,6 +1,6 @@
 {
   "name": "toaststrap",
-  "version": "1.1.0",
+  "version": "1.0.1",
   "description": "A simple, lightweight JavaScript library for showing Bootstrap 5 toast popups.",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
